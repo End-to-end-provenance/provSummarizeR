@@ -27,17 +27,46 @@
 #'   into a zip file stored in the current working directory
 #' @export
 prov.summarize.file <- function (prov.file, create.zip=FALSE) {
-  prov <- provParseR::prov.parse(prov.file)
-  environment <- provParseR::get.environment(prov)
+  if (!file.exists(prov.file)) {
+     cat("Provenance file not found.\n")
+  } else {
+    prov <- provParseR::prov.parse(prov.file)
+    environment <- provParseR::get.environment(prov)
+    generate.summaries(prov, environment)
+
+    if (create.zip) {
+      save.to.zip.file (environment)
+    }
+  }
+}
+
+#' prov.summarize
+#' 
+#' prov.summarize reads a JSON string that contains provenance and outputs
+#' a text summary to the R console
+#' 
+#' @param create.zip if true all of the provenance data will be packaged up
+#'   into a zip file stored in the current working directory
+#' @export
+prov.summarize <- function (create.zip=FALSE) {
+  prov.json <- rdtLite::prov.json()
+  if (!is.null(prov.json)) {
+    prov <- provParseR::prov.parse(prov.json, isFile=F)
+    environment <- provParseR::get.environment(prov)
+    generate.summaries(prov, environment)
+  }
+
+  if (create.zip) {
+    save.to.zip.file (environment)
+  }
+}
+
+generate.summaries <- function(prov, environment) {
   generate.environment.summary (environment, provParseR::get.tool.info(prov))
   generate.library.summary (provParseR::get.libs(prov))
   generate.file.summary ("Input", provParseR::get.input.files(prov))
   generate.file.summary ("Output", provParseR::get.output.files(prov))
   generate.script.summary (provParseR::get.scripts(prov))
-  
-  if (create.zip) {
-    save.to.zip.file (environment)
-  }
 }
 
 generate.environment.summary <- function (environment, tool.info) {
