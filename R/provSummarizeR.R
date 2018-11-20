@@ -64,47 +64,69 @@ prov.summarize <- function (create.zip=FALSE) {
 generate.summaries <- function(prov, environment) {
   generate.environment.summary (environment, provParseR::get.tool.info(prov))
   generate.library.summary (provParseR::get.libs(prov))
-  generate.file.summary ("Input", provParseR::get.input.files(prov))
-  generate.file.summary ("Output", provParseR::get.output.files(prov))
   generate.script.summary (provParseR::get.scripts(prov))
+  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov))
+  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov))
 }
 
 generate.environment.summary <- function (environment, tool.info) {
   script.path <- environment[environment$label == "script", ]$value
   script.file <- sub(".*/", "", script.path)
-  cat (paste ("Provenance summary for", script.file, "\n\n"))
+  
+  if (script.file != "") {
+    cat (paste ("PROVENANCE SUMMARY for", script.file, "\n\n"))
+  } else {
+    cat (paste ("PROVENANCE SUMMARY for Console Session\n\n"))
+  }
+  
+  cat (paste ("ENVIRONMENT:\n"))
   cat (paste ("Executed at", environment[environment$label == "provTimestamp", ]$value, "\n"))
-  cat (paste ("Script last modified at", environment[environment$label == "scriptTimeStamp", ]$value, "\n"))
+  
+  if (script.file != "") {
+    cat (paste ("Script last modified at", environment[environment$label == "scriptTimeStamp", ]$value, "\n"))
+  }
+  
   cat (paste ("Executed with", environment[environment$label == "langVersion", ]$value, "\n"))
   cat (paste ("Executed on", environment[environment$label == "architecture", ]$value,
       "running", environment[environment$label == "operatingSystem", ]$value, "\n"))
   cat (paste ("Provenance was collected with", tool.info$tool.name, tool.info$tool.version, "\n"))
   cat (paste ("Provenance is stored in", environment[environment$label == "provDirectory", ]$value, "\n"))
+  cat (paste ("Hash algorithm is", environment[environment$label == "hashAlgorithm", ]$value, "\n" ))
+  cat ("\n")
 }
 
 generate.library.summary <- function (libs) {
-  cat ("\nLibraries:\n")
+  cat ("LIBRARIES:\n")
   cat (paste (libs$name, libs$version, collapse="\n"))
+  cat ("\n\n")
+}
+
+generate.script.summary <- function (scripts) {
+  cat (paste ("SOURCED SCRIPTS:\n"))
+  if (nrow(scripts) > 1) {
+    script.info <- dplyr::select(scripts[2:nrow(scripts), ], "script", "timestamp")
+    print (script.info, row.names=FALSE, right=FALSE)
+  } else {
+    cat("None\n")
+  }
   cat ("\n")
 }
 
 generate.file.summary <- function (direction, files) {
+  cat(direction, "\n")
   if (nrow(files) == 0) {
-    cat (paste ("\n", direction, "files: None\n"))
+    cat ("None\n")
   }
   else {
-    cat (paste ("\n", direction, "files:\n"))
-    file.info <- dplyr::select(files, "name", "timestamp")
-    print (file.info, row.names=FALSE, right=FALSE)
+    file.info <- dplyr::select(files, "type", "name", "timestamp", "hash")
+    for (i in 1:nrow(file.info)) {
+      cat(file.info[i, "type"], ": ")
+      cat(file.info[i, "name"], "\n")
+      if (file.info[i, "timestamp"] != "") cat("  ", file.info[i, "timestamp"], "\n")
+      if (file.info[i, "hash"] != "") cat("  ", file.info[i, "hash"], "\n")
+    }
   }
-}
-
-generate.script.summary <- function (scripts) {
-  if (nrow(scripts) > 1) {
-    cat (paste ("\nScripts sourced:\n"))
-    script.info <- dplyr::select(scripts[2:nrow(scripts), ], "script", "timestamp")
-    print (script.info, row.names=FALSE, right=FALSE)
-  }
+  cat("\n")
 }
 
 save.to.zip.file <- function (environment) {
