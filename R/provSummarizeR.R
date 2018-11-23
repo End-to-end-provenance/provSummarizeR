@@ -105,7 +105,12 @@ generate.script.summary <- function (scripts) {
   cat (paste ("SOURCED SCRIPTS:\n"))
   if (nrow(scripts) > 1) {
     script.info <- dplyr::select(scripts[2:nrow(scripts), ], "script", "timestamp")
-    print (script.info, row.names=FALSE, right=FALSE)
+    for (i in 1:nrow(script.info)) {
+      cat(script.info[i, "script"], "\n")
+      cat("  ", script.info[i, "timestamp"], "\n")
+    }
+    
+    # print (script.info, row.names=FALSE, col.names=FALSE, right=FALSE)
   } else {
     cat("None\n")
   }
