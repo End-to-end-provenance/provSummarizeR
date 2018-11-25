@@ -2,7 +2,7 @@ Package: provSummarizeR
 Title: Summarizes provenance related to inputs and outputs of a script 
 Version: 1.0
 Authors@R: c( person("Barbara", "Lerner", role = "cre",
-					  email = "blerner@cs.mtholyoke.edu"),
+				      email = "blerner@cs.mtholyoke.edu"),
               person("Emery", "Boose", role = "aut",
                       email = "boose@fas.harvard.edu")
 		    )

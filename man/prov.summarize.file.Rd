@@ -4,10 +4,13 @@
 \alias{prov.summarize.file}
 \title{prov.summarize.file}
 \usage{
-prov.summarize.file(prov.file, create.zip = FALSE)
+prov.summarize.file(prov.file, save = FALSE, create.zip = FALSE)
 }
 \arguments{
 \item{prov.file}{the path to the file containing provenance}
+
+\item{save}{if true saves the summary to the file prov-summary.txt on the 
+provenance directory}
 
 \item{create.zip}{if true all of the provenance data will be packaged up
 into a zip file stored in the current working directory}

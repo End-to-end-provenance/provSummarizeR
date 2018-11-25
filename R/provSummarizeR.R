@@ -23,17 +23,21 @@
 #' a text summary to the R console
 #' 
 #' @param prov.file the path to the file containing provenance
+#' @param save if true saves the summary to the file prov-summary.txt on the 
+#' provenance directory
 #' @param create.zip if true all of the provenance data will be packaged up
 #'   into a zip file stored in the current working directory
 #' @export
-prov.summarize.file <- function (prov.file, create.zip=FALSE) {
+prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
   if (!file.exists(prov.file)) {
      cat("Provenance file not found.\n")
   } else {
     prov <- provParseR::prov.parse(prov.file)
     environment <- provParseR::get.environment(prov)
+    if (save) save.to.text.file(environment)
     generate.summaries(prov, environment)
-
+    if (save) sink()
+    
     if (create.zip) {
       save.to.zip.file (environment)
     }
@@ -45,20 +49,30 @@ prov.summarize.file <- function (prov.file, create.zip=FALSE) {
 #' prov.summarize reads a JSON string that contains provenance and outputs
 #' a text summary to the R console
 #' 
+#' @param save if true saves the summary to the file prov-summary.txt on the 
+#' provenance directory
 #' @param create.zip if true all of the provenance data will be packaged up
 #'   into a zip file stored in the current working directory
 #' @export
-prov.summarize <- function (create.zip=FALSE) {
+prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   prov.json <- rdtLite::prov.json()
   if (!is.null(prov.json)) {
     prov <- provParseR::prov.parse(prov.json, isFile=F)
     environment <- provParseR::get.environment(prov)
+    if (save) save.to.text.file(environment)
     generate.summaries(prov, environment)
+    if (save) sink()
   }
 
   if (create.zip) {
     save.to.zip.file (environment)
   }
+}
+
+save.to.text.file <- function(environment) {
+  prov.path <- environment[environment$label == "provDirectory", ]$value
+  prov.file <- paste(prov.path, "/prov-summary.txt", sep="")
+  sink(prov.file)
 }
 
 generate.summaries <- function(prov, environment) {
@@ -109,8 +123,6 @@ generate.script.summary <- function (scripts) {
       cat(script.info[i, "script"], "\n")
       cat("  ", script.info[i, "timestamp"], "\n")
     }
-    
-    # print (script.info, row.names=FALSE, col.names=FALSE, right=FALSE)
   } else {
     cat("None\n")
   }
