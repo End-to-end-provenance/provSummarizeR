@@ -162,10 +162,24 @@ save.to.zip.file <- function (environment) {
       environment[environment$label == "provTimestamp", ]$value, ".zip")
   zippath <- paste0 (cur.dir, "/", zipfile)
   if (file.exists (zippath)) {
-    setwd(cur.dir)
-    stop (zippath, " already exists.")
+    warning (zippath, " already exists.")
   }
-  utils::zip (zippath, ".", extras="-x debug/")
+  
+  else {
+    zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x debug/")
+    if (zip.result == 0) {
+      cat (paste ("Provenance saved in", zipfile))
+    }
+    else if (zip.result == 127) {
+      warning ("Unable to create a zip file.  Please check that you have a zip program, such as 7-zip, on your path, and have the R_ZIPCMD environment variable set.")
+    }
+    else if (zip.result == 124) {
+      warning ("Unable to create a zip file.  The zip program timed out.")
+    }
+    else {
+      warning ("Unable to create a zip file.  The zip program returned error ", zip.result)
+    }
+  }
+  
   setwd(cur.dir)
-  cat (paste ("Provenance saved in", zipfile))
 }
