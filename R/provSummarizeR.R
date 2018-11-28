@@ -34,10 +34,12 @@ prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
   } else {
     prov <- provParseR::prov.parse(prov.file)
     environment <- provParseR::get.environment(prov)
-    if (save) save.to.text.file(environment)
     generate.summaries(prov, environment)
-    if (save) sink()
-    
+ 
+    if (save) {
+      save.to.text.file(prov, environment)
+    }
+
     if (create.zip) {
       save.to.zip.file (environment)
     }
@@ -59,20 +61,25 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   if (!is.null(prov.json)) {
     prov <- provParseR::prov.parse(prov.json, isFile=F)
     environment <- provParseR::get.environment(prov)
-    if (save) save.to.text.file(environment)
     generate.summaries(prov, environment)
-    if (save) sink()
-  }
 
-  if (create.zip) {
-    save.to.zip.file (environment)
+    if (save) {
+      save.to.text.file(prov, environment)
+    }
+
+    if (create.zip) {
+      save.to.zip.file (environment)
+    }
   }
 }
 
-save.to.text.file <- function(environment) {
+save.to.text.file <- function(prov, environment) {
   prov.path <- environment[environment$label == "provDirectory", ]$value
   prov.file <- paste(prov.path, "/prov-summary.txt", sep="")
   sink(prov.file)
+  generate.summaries(prov, environment)
+  sink()
+  cat(paste("Saving provenance summmary in", prov.file))
 }
 
 generate.summaries <- function(prov, environment) {
