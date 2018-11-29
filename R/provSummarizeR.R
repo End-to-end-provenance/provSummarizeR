@@ -17,71 +17,145 @@
 
 ###############################################################################
 
+#' Provenance summarization functions
+#' 
+#' prov.summarize uses the provenance from the last execution of prov.run and outputs
+#' a text summary to the R console
+#' 
+#' These functions use provenance collected using the rdtLite or rdt packages.
+#' 
+#' Creating a zip file depends on a zip executable being on the search path.
+#' By default, it looks for a program named zip.  To use a program with 
+#' a different name, set the value of the R_ZIPCMD environment variable.  This
+#' code has been tested with Unix zip and with 7.zip on Windows.  
+#' 
+#' @param prov.file the path to the file containing provenance
+#' @param save if true saves the summary to the file prov-summary.txt in the 
+#' provenance directory
+#' @param create.zip if true all of the provenance data will be packaged up
+#'   into a zip file stored in the current working directory.
+#' 
+#' @export
+#' @rdname summarize
+prov.summarize <- function (save=FALSE, create.zip=FALSE) {
+  # Determine which provenance collector to use
+  tool <- get.tool()
+  if (tool == "rdtLite") {
+    prov.json <- rdtLite::prov.json
+  } else {
+    prov.json <- rdt::prov.json
+  }
+  
+  prov.summarize.file (prov.json(), save, create.zip)
+}
+
 #' prov.summarize.file
 #' 
 #' prov.summarize.file reads a JSON file that contains provenance and outputs
 #' a text summary to the R console
 #' 
-#' @param prov.file the path to the file containing provenance
-#' @param save if true saves the summary to the file prov-summary.txt on the 
-#' provenance directory
-#' @param create.zip if true all of the provenance data will be packaged up
-#'   into a zip file stored in the current working directory
 #' @export
+#' @rdname summarize
 prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
   if (!file.exists(prov.file)) {
-     cat("Provenance file not found.\n")
+    cat("Provenance file not found.\n")
+    return()
+  } 
+  
+  prov <- provParseR::prov.parse(prov.file)
+  environment <- provParseR::get.environment(prov)
+  
+  if (save) {
+    save.to.text.file(prov, environment)
+  }
+  else {
+    generate.summaries(prov, environment)
+  }
+  
+  if (create.zip) {
+    save.to.zip.file (environment)
+  }
+  
+}
+
+#' prov.summarize.run
+#'
+#' prov.summarize.run executes a script, collects provenance, and outputs a
+#' text summary to the console.
+#'
+#' @param r.script the name of a file containing an R script
+#' @param ... extra parameters are passed to the provenance collector.  See rdt's prov.run function
+#'    or rdtLites's prov.run function for details.
+
+#' @export 
+#' @rdname summarize
+prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
+  # Determine which provenance collector to use
+  tool <- get.tool()
+  if (tool == "rdtLite") {
+    prov.run <- rdtLite::prov.run
+    prov.json <- rdtLite::prov.json
   } else {
-    prov <- provParseR::prov.parse(prov.file)
-    environment <- provParseR::get.environment(prov)
-    generate.summaries(prov, environment)
- 
-    if (save) {
-      save.to.text.file(prov, environment)
-    }
-
-    if (create.zip) {
-      save.to.zip.file (environment)
-    }
+    prov.run <- rdt::prov.run
+    prov.json <- rdt:: prov.json
   }
+  
+  # Run the script, collecting provenance, if a script was provided.
+  prov.run(r.script, ...)
+
+  # Create the provenance summary
+  prov.summarize.file(prov.json(), save, create.zip)
 }
 
-#' prov.summarize
+#' get.tool determines whether to use rdt or rdtLite to get the provenance
 #' 
-#' prov.summarize reads a JSON string that contains provenance and outputs
-#' a text summary to the R console
+#' If rdtLite is loaded, "rdtLite" is returned.  If rdtLite is not loaded, but rdt
+#' is, "rdt" is returned.  If neither is loaded, it then checks to see if either
+#' is installed, favoring "rdtLite" over "rdt".
 #' 
-#' @param save if true saves the summary to the file prov-summary.txt on the 
-#' provenance directory
-#' @param create.zip if true all of the provenance data will be packaged up
-#'   into a zip file stored in the current working directory
-#' @export
-prov.summarize <- function (save=FALSE, create.zip=FALSE) {
-  prov.json <- rdtLite::prov.json()
-  if (!is.null(prov.json)) {
-    prov <- provParseR::prov.parse(prov.json, isFile=F)
-    environment <- provParseR::get.environment(prov)
-    generate.summaries(prov, environment)
+#' Stops if neither rdt or rdtLite is available.
+#' 
+#' @return "rdtLite" or "rdt"
+#' @noRd 
+get.tool <- function () {
+  # Determine which provenance collector to use
+  loaded <- loadedNamespaces()
+  if ("rdtLite" %in% loaded) {
+    return("rdtLite")
+  } 
+  if ("rdt" %in% loaded) {
+    return("rdt")
+  } 
 
-    if (save) {
-      save.to.text.file(prov, environment)
-    }
-
-    if (create.zip) {
-      save.to.zip.file (environment)
-    }
+  installed <- utils::installed.packages ()
+  if ("rdtLite" %in% installed) {
+    return("rdtLite")
+  } 
+  if ("rdt" %in% installed) {
+    return("rdt")
   }
+   
+  stop ("One of rdtLite or rdt must be installed.")
 }
 
+#' save.to.text.file saves the summary to a text file
+#' @param prov the parsed provenance
+#' @param environment a data frame containing the environment information
+#' @noRd 
 save.to.text.file <- function(prov, environment) {
   prov.path <- environment[environment$label == "provDirectory", ]$value
   prov.file <- paste(prov.path, "/prov-summary.txt", sep="")
-  sink(prov.file)
+  sink(prov.file, split=TRUE)
   generate.summaries(prov, environment)
   sink()
   cat(paste("Saving provenance summmary in", prov.file))
 }
 
+#' generate.summaries creates the text summary, writing it to the
+#' current output sink(s)
+#' @param prov the parsed provenance
+#' @param environment the environemnt data frame extracted from the provenance
+#' @noRd
 generate.summaries <- function(prov, environment) {
   generate.environment.summary (environment, provParseR::get.tool.info(prov))
   generate.library.summary (provParseR::get.libs(prov))
@@ -90,6 +164,11 @@ generate.summaries <- function(prov, environment) {
   generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov))
 }
 
+#' generate.environment.summary creates the text summary of the environment, writing it to the
+#' current output sink(s)
+#' @param environment the environemnt data frame extracted from the provenance
+#' @param tool.info the data frame containing information about the provenance collection tool that was used
+#' @noRd
 generate.environment.summary <- function (environment, tool.info) {
   script.path <- environment[environment$label == "script", ]$value
   script.file <- sub(".*/", "", script.path)
@@ -116,12 +195,20 @@ generate.environment.summary <- function (environment, tool.info) {
   cat ("\n")
 }
 
+#' generate.library.summary creates the text summary of the libraries used, writing it to the
+#' current output sink(s)
+#' @param libs the data frame containing information about the libraries used
+#' @noRd
 generate.library.summary <- function (libs) {
   cat ("LIBRARIES:\n")
   cat (paste (libs$name, libs$version, collapse="\n"))
   cat ("\n\n")
 }
 
+#' generate.script.summary creates the text summary of the scripts sourced, writing it to the
+#' current output sink(s)
+#' @param scripts the data frame containing information about the scripts sourced
+#' @noRd
 generate.script.summary <- function (scripts) {
   cat (paste ("SOURCED SCRIPTS:\n"))
   if (nrow(scripts) > 1) {
@@ -136,6 +223,11 @@ generate.script.summary <- function (scripts) {
   cat ("\n")
 }
 
+#' generate.file.summary creates the text summary of files read or written by the script, writing it to the
+#' current output sink(s)
+#' @param direction the heading to proceed the file list, intended to identify them as input or output files
+#' @param files the data frame containing information about the files read or written by the script
+#' @noRd
 generate.file.summary <- function (direction, files) {
   cat(direction, "\n")
   if (nrow(files) == 0) {
@@ -153,25 +245,36 @@ generate.file.summary <- function (direction, files) {
   cat("\n")
 }
 
+#' save.to.zip.file creates a zip file of the provenance directory
+#' @param environment the environemnt data frame extracted from the provenance
+#' @noRd
 save.to.zip.file <- function (environment) {
+  # Determine where the provenance is 
   cur.dir <- getwd()
   prov.path <- environment[environment$label == "provDirectory", ]$value
   setwd(prov.path)
+  
+  # Determine the name for the zip file
   prov.dir <- sub (".*/", "", prov.path)
   zipfile <- paste0 (prov.dir, "_", 
       environment[environment$label == "provTimestamp", ]$value, ".zip")
   zippath <- paste0 (cur.dir, "/", zipfile)
+
   if (file.exists (zippath)) {
     warning (zippath, " already exists.")
   }
   
   else {
-    if (.Platform$OS.type == "windows" && Sys.getenv("R_ZIPCMD") == "7.zip") {
+    # Zip it up
+    zip.program <- Sys.getenv("R_ZIPCMD", "zip")
+    if (.Platform$OS.type == "windows" && zip.program == "7.zip") {
       zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x!debug")
     }
     else {
       zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x debug/")
     }
+    
+    # Check for errors
     if (zip.result == 0) {
       cat (paste ("Provenance saved in", zipfile))
     }
@@ -182,9 +285,10 @@ save.to.zip.file <- function (environment) {
       warning ("Unable to create a zip file.  The zip program timed out.")
     }
     else {
-      warning ("Unable to create a zip file.  The zip program returned error ", zip.result)
+      warning ("Unable to create a zip file.  The zip program ", zip.program, " returned error ", zip.result)
     }
   }
   
+  # Return to the directory where the user executed the command from.
   setwd(cur.dir)
 }

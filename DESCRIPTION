@@ -16,7 +16,9 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    provParseR,
-    rdtLite
+    provParseR
+Suggests:
+    rdtLite,
+    rdt
 URL: https://github.com/End-to-end-provenance
 RoxygenNote: 6.1.1
