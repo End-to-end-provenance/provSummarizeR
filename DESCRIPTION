@@ -17,6 +17,7 @@ LazyData: true
 Imports: 
     dplyr,
     provParseR,
-    rdtLite
+    rdtLite,
+    rdt
 URL: https://github.com/End-to-end-provenance
 RoxygenNote: 6.1.1

@@ -73,6 +73,48 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   }
 }
 
+#' prov.summarize.run
+#'
+#' prov.summarize.run executes a script, collects provenance, and outputs a
+#' text summary to the console.
+#'
+#' @param r.script the name of a file containing an R script
+#' @param ... extra parameters are passed to the provenance collector
+#' @param save if true saves the summary to the file prov-summary.txt on the 
+#' provenance directory
+#' @param create.zip if true all of the provenance data will be packaged up
+#'   into a zip file stored in the current working directory
+#'@export 
+prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
+  # Determine which provenance collector to use
+  loaded <- loadedNamespaces()
+  if ("rdtLite" %in% loaded) {
+    tool <- "rdtLite"
+  } else if ("rdt" %in% loaded) {
+    tool <- "rdt"
+  } else {
+    installed <- utils::installed.packages ()
+    if ("rdtLite" %in% installed) {
+      tool <- "rdtLite"
+    } else if ("rdt" %in% installed) {
+      tool <- "rdt"
+    } else {
+      stop ("One of rdtLite or rdt must be installed.")
+    }
+  }
+  if (tool == "rdtLite") {
+    prov.run <- rdtLite::prov.run
+  } else {
+    prov.run <- rdt::prov.run
+  }
+  
+  # Run the script, collecting provenance, if a script was provided.
+  prov.run(r.script, ...)
+
+  # Create the provenance summary
+  prov.summarize(save, create.zip)
+}
+
 save.to.text.file <- function(prov, environment) {
   prov.path <- environment[environment$label == "provDirectory", ]$value
   prov.file <- paste(prov.path, "/prov-summary.txt", sep="")
@@ -140,8 +182,7 @@ generate.file.summary <- function (direction, files) {
   cat(direction, "\n")
   if (nrow(files) == 0) {
     cat ("None\n")
-  }
-  else {
+  } else {
     file.info <- dplyr::select(files, "type", "name", "timestamp", "hash")
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
