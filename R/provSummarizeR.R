@@ -166,7 +166,12 @@ save.to.zip.file <- function (environment) {
   }
   
   else {
-    zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x debug/")
+    if (.Platform$OS.type == "windows" && Sys.getenv("R_ZIPCMD") == "7.zip") {
+      zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x!debug")
+    }
+    else {
+      zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x debug/")
+    }
     if (zip.result == 0) {
       cat (paste ("Provenance saved in", zipfile))
     }
