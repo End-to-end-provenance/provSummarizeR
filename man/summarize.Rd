@@ -42,5 +42,5 @@ These functions use provenance collected using the rdtLite or rdt packages.
 Creating a zip file depends on a zip executable being on the search path.
 By default, it looks for a program named zip.  To use a program with 
 a different name, set the value of the R_ZIPCMD environment variable.  This
-code has been tested with Unix zip and with 7.zip on Windows.
+code has been tested with Unix zip and with 7-zip on Windows.
 }

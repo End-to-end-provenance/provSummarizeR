@@ -19,6 +19,7 @@ Imports:
     provParseR
 Suggests:
     rdtLite,
-    rdt
+    rdt,
+    testthat
 URL: https://github.com/End-to-end-provenance
 RoxygenNote: 6.1.1

@@ -27,7 +27,7 @@
 #' Creating a zip file depends on a zip executable being on the search path.
 #' By default, it looks for a program named zip.  To use a program with 
 #' a different name, set the value of the R_ZIPCMD environment variable.  This
-#' code has been tested with Unix zip and with 7.zip on Windows.  
+#' code has been tested with Unix zip and with 7-zip on Windows.  
 #' 
 #' @param prov.file the path to the file containing provenance
 #' @param save if true saves the summary to the file prov-summary.txt in the 
@@ -267,7 +267,9 @@ save.to.zip.file <- function (environment) {
   else {
     # Zip it up
     zip.program <- Sys.getenv("R_ZIPCMD", "zip")
-    if (.Platform$OS.type == "windows" && zip.program == "7.zip") {
+    zip.program <- sub(".*/", "", zip.program)
+    print (paste ("Using", zip.program))
+    if (.Platform$OS.type == "windows" && zip.program == "7z.exe") {
       zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x!debug")
     }
     else {
