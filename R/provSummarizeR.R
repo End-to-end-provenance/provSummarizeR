@@ -269,7 +269,8 @@ save.to.zip.file <- function (environment) {
     zip.program <- Sys.getenv("R_ZIPCMD", "zip")
     print (paste ("Using", zip.program))
     if (.Platform$OS.type == "windows" && endsWith (zip.program, "7z.exe")) {
-      zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x!debug")
+      # 7z.exe a prov.zip . -r -x!debug 
+      zip.result <- utils::zip (zippath, ".", flags="a", extras="-r -x!debug")
     }
     else {
       zip.result <- utils::zip (zippath, ".", flags="-r", extras="-x debug/")

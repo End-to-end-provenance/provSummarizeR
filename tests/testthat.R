@@ -1,4 +1,4 @@
 library(testthat)
 library(provParseR)
 
-test_check("provParseR")
+test_check("provSummarizeR")
