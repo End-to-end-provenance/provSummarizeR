@@ -1,13 +1,16 @@
 Package: provSummarizeR
-Title: Summarizes provenance related to inputs and outputs of a script 
+Title: Summarizes Provenance Related to Inputs and Outputs of a Script or Console Commands
 Version: 1.0
-Authors@R: c(
-    person("Barbara", "Lerner", email = "blerner@cs.mtholyoke.edu", role = "cre")
-    )
-Description: Reads the provenance created by the execution of a script and provides
-    a human-readable summary identifying the input and output files, the script used,
-    and the environment in which it was executed.  It also packages all the files
-    into a zip file.
+Authors@R: c( person("Barbara", "Lerner", role = "cre",
+                      email = "blerner@cs.mtholyoke.edu"),
+              person("Emery", "Boose", role = "aut",
+                      email = "boose@fas.harvard.edu")
+		    )
+Description: Reads the provenance created by the execution of a script 
+    or from commands in the console and provides a human-readable 
+    summary identifying the input and output files, the script used 
+    (if any), and the environment in which it was executed.  It can 
+    also optionally package all the files into a zip file.
 Depends: R (>= 3.5)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
@@ -15,5 +18,9 @@ LazyData: true
 Imports: 
     dplyr,
     provParseR
+Suggests:
+    rdtLite,
+    rdt,
+    testthat
 URL: https://github.com/End-to-end-provenance
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
