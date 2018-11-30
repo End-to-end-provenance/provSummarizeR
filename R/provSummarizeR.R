@@ -46,7 +46,8 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
     prov.json <- rdt::prov.json
   }
   
-  prov.summarize.file (prov.json(), save, create.zip)
+  prov <- provParseR::prov.parse(prov.json(), isFile = FALSE)
+  summarize.prov (prov, save, create.zip)
 }
 
 #' prov.summarize.file
@@ -63,19 +64,7 @@ prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
   } 
   
   prov <- provParseR::prov.parse(prov.file)
-  environment <- provParseR::get.environment(prov)
-  
-  if (save) {
-    save.to.text.file(prov, environment)
-  }
-  else {
-    generate.summaries(prov, environment)
-  }
-  
-  if (create.zip) {
-    save.to.zip.file (environment)
-  }
-  
+  summarize.prov (prov, save, create.zip)
 }
 
 #' prov.summarize.run
@@ -104,7 +93,32 @@ prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
   prov.run(r.script, ...)
 
   # Create the provenance summary
-  prov.summarize.file(prov.json(), save, create.zip)
+  prov <- provParseR::prov.parse(prov.json(), isFile=FALSE)
+  summarize.prov (prov, save, create.zip)
+}
+
+#' summarize.prov summarizes provenance where the provenance is in a string
+#' 
+#' @param prov the json in a string
+#' @param save if true saves the summary to the file prov-summary.txt in the 
+#' provenance directory
+#' @param create.zip if true all of the provenance data will be packaged up
+#'   into a zip file stored in the current working directory.
+#' @noRd
+summarize.prov <- function (prov, save, create.zip) {
+  environment <- provParseR::get.environment(prov)
+  
+  if (save) {
+    save.to.text.file(prov, environment)
+  }
+  else {
+    generate.summaries(prov, environment)
+  }
+  
+  if (create.zip) {
+    save.to.zip.file (environment)
+  }
+  
 }
 
 #' get.tool determines whether to use rdt or rdtLite to get the provenance
