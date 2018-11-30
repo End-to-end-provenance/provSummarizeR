@@ -1,5 +1,5 @@
 Package: provSummarizeR
-Title: Summarizes provenance related to inputs and outputs of a script 
+Title: Summarizes Provenance Related to Inputs and Outputs of a Script 
 Version: 1.0
 Authors@R: c( person("Barbara", "Lerner", role = "cre",
 				      email = "blerner@cs.mtholyoke.edu"),
