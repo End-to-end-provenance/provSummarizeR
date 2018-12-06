@@ -90,7 +90,7 @@ prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
   }
   
   # Run the script, collecting provenance, if a script was provided.
-  prov.run(r.script, ...)
+  tryCatch (prov.run(r.script, ...), error = function(x) {print (x)})
 
   # Create the provenance summary
   prov <- provParseR::prov.parse(prov.json(), isFile=FALSE)
@@ -176,6 +176,7 @@ generate.summaries <- function(prov, environment) {
   generate.script.summary (provParseR::get.scripts(prov))
   generate.file.summary ("INPUTS:", provParseR::get.input.files(prov))
   generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov))
+  generate.error.summary (prov)
 }
 
 #' generate.environment.summary creates the text summary of the environment, writing it to the
@@ -257,6 +258,55 @@ generate.file.summary <- function (direction, files) {
     }
   }
   cat("\n")
+}
+
+#' generate.error.summary creates the text summary for errors and warnings.  It identifies
+#' the line of code that produced the error as well as the error message
+#' @param prov the provenance object
+#' @noRd
+generate.error.summary <- function (prov) {
+  # Get the error nodes
+  data.nodes <- provParseR::get.data.nodes(prov)
+  error.nodes <- data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  
+  cat ("ERRORS:\n")
+  if (nrow(error.nodes) == 0) {
+    cat ("None\n")
+    return()
+  }
+
+  # Get the proc-data edges and the proc nodes
+  error.ids <- error.nodes$id
+  proc.data.edges <- provParseR::get.proc.data(prov)
+  proc.nodes <- provParseR::get.proc.nodes(prov)
+  
+  # Merge the data frames so that we have the error and the operation that
+  # produced that error in 1 row
+  error.report <- merge (error.nodes, proc.data.edges, by.x="id", by.y="entity")
+  error.report <- merge (error.report, proc.nodes, by.x="activity", by.y="id")
+  
+  # Get the scripts and remove the directory name
+  scripts <- provParseR::get.scripts(prov)
+  scripts <- sub (".*/", "", scripts$script)
+  
+  # Output the error information, using line numbers if it is available
+  for (i in 1:nrow(error.nodes)) {
+    cat ("In", scripts[error.report[i, "scriptNum"]])
+    if (is.na (error.report[i, "startLine"])) {
+      cat (" on line\n")
+      cat ("    ", error.report[i, "name"], "\n")
+    }
+    else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
+             is.na (error.report[i, "endLine"])){
+      cat (" on line ", error.report[i, "startLine"], "\n")
+      cat ("    ", error.report[i, "name"], "\n")
+    }
+    else {
+      cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], "\n")
+      cat ("    ", error.report[i, "name"], "\n")
+    }
+    cat ("    ", error.report[i, "value"], "\n")
+  }
 }
 
 #' save.to.zip.file creates a zip file of the provenance directory
