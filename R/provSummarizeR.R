@@ -47,7 +47,7 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   }
   
   prov <- provParseR::prov.parse(prov.json(), isFile = FALSE)
-  summarize.prov (prov, save, create.zip, tool)
+  summarize.prov (prov, save, create.zip)
 }
 
 #' prov.summarize.file
