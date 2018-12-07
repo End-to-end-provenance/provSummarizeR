@@ -47,7 +47,7 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   }
   
   prov <- provParseR::prov.parse(prov.json(), isFile = FALSE)
-  summarize.prov (prov, save, create.zip)
+  summarize.prov (prov, save, create.zip, tool)
 }
 
 #' prov.summarize.file
@@ -174,8 +174,8 @@ generate.summaries <- function(prov, environment) {
   generate.environment.summary (environment, provParseR::get.tool.info(prov))
   generate.library.summary (provParseR::get.libs(prov))
   generate.script.summary (provParseR::get.scripts(prov))
-  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov))
-  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov))
+  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
+  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
   generate.error.summary (prov)
 }
 
@@ -242,18 +242,56 @@ generate.script.summary <- function (scripts) {
 #' current output sink(s)
 #' @param direction the heading to proceed the file list, intended to identify them as input or output files
 #' @param files the data frame containing information about the files read or written by the script
+#' @param prov the provenance object
 #' @noRd
-generate.file.summary <- function (direction, files) {
+generate.file.summary <- function (direction, files, prov) {
   cat(direction, "\n")
   if (nrow(files) == 0) {
     cat ("None\n")
   }
   else {
-    file.info <- dplyr::select(files, "type", "name", "timestamp", "hash")
+    file.info <- dplyr::select(files, "type", "name", "value", "location", "hash", "timestamp")
+    
+    # Figure out which tool and version we are using.
+    tool.info <- provParseR::get.tool.info(prov)
+    tool <- tool.info$tool.name
+    version <- tool.info$tool.version
+    if (tool == "rdtLite" && utils::compareVersion (version, "1.0.3") < 0) {
+      use.original.timestamp <- TRUE
+    }
+    else if (tool == "rdt" && utils::compareVersion (version, "3.0.3") < 0) {
+      use.original.timestamp <- TRUE
+    }
+    else {
+      use.original.timestamp <- FALSE
+    }
+    
+    # In rdtLite before 1.0.3, and in rdt before 3.0.3, file times were
+    # not preserved when copying into the data directory.  Therefore, we needed
+    # to get the timestamp from the original file.  In later versions of the
+    # tools, the timestamps are preserved, so we use the timestamp in the
+    # saved copies.
+    if (use.original.timestamp) {
+      file.info$filetime <- as.character (file.mtime(file.info$location))
+    }
+    else {
+      environment <- provParseR::get.environment(prov)
+      prov.dir <- environment[environment$label == "provDirectory", ]$value
+      file.info$filetime <- as.character (file.mtime(paste0 (prov.dir, "/", file.info$value)))
+    }
+    
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
       cat(file.info[i, "name"], "\n")
-      if (file.info[i, "timestamp"] != "") cat("  ", file.info[i, "timestamp"], "\n")
+      if (is.na (file.info[i, "filetime"])) {
+        if (file.info[i, "timestamp"] != "") {
+          cat("  ", file.info[i, "timestamp"], "\n")
+        }
+      }
+      else {
+        cat("  ", file.info[i, "filetime"], "\n")
+      }
+        
       if (file.info[i, "hash"] != "") cat("  ", file.info[i, "hash"], "\n")
     }
   }
