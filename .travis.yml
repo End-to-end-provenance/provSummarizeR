@@ -1,6 +1,5 @@
 language: r
 r:
-  - oldrel
   - release
   - devel
 
@@ -11,11 +10,11 @@ warnings_are_errors: true
 
 r_packages:
   - dplyr
+  - rdtLite
 
 r_github_packages:
   - End-to-end-provenance/provParseR
   - End-to-end-provenance/rdt
-  - End-to-end-provenance/rdtLite
 
 notifications:
   slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
