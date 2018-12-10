@@ -331,19 +331,19 @@ generate.error.summary <- function (prov) {
   for (i in 1:nrow(error.nodes)) {
     cat ("In", scripts[error.report[i, "scriptNum"]])
     if (is.na (error.report[i, "startLine"])) {
-      cat (" on line\n")
-      cat ("    ", error.report[i, "name"], "\n")
+      cat (" on line:\n")
+      cat ("  ", error.report[i, "name"], "\n")
     }
     else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
              is.na (error.report[i, "endLine"])){
-      cat (" on line ", error.report[i, "startLine"], "\n")
-      cat ("    ", error.report[i, "name"], "\n")
+      cat (" on line ", error.report[i, "startLine"], ":\n")
+      cat ("  ", error.report[i, "name"], "\n")
     }
     else {
-      cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], "\n")
-      cat ("    ", error.report[i, "name"], "\n")
+      cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], ":\n")
+      cat ("  ", error.report[i, "name"], "\n")
     }
-    cat ("    ", error.report[i, "value"], "\n")
+    cat ("  ", error.report[i, "value"], "\n")
   }
 }
 
