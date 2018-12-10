@@ -90,7 +90,7 @@ prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
   }
   
   # Run the script, collecting provenance, if a script was provided.
-  prov.run(r.script, ...)
+  tryCatch (prov.run(r.script, ...), error = function(x) {print (x)})
 
   # Create the provenance summary
   prov <- provParseR::prov.parse(prov.json(), isFile=FALSE)
@@ -174,8 +174,9 @@ generate.summaries <- function(prov, environment) {
   generate.environment.summary (environment, provParseR::get.tool.info(prov))
   generate.library.summary (provParseR::get.libs(prov))
   generate.script.summary (provParseR::get.scripts(prov))
-  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov))
-  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov))
+  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
+  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
+  generate.error.summary (prov)
 }
 
 #' generate.environment.summary creates the text summary of the environment, writing it to the
@@ -241,22 +242,109 @@ generate.script.summary <- function (scripts) {
 #' current output sink(s)
 #' @param direction the heading to proceed the file list, intended to identify them as input or output files
 #' @param files the data frame containing information about the files read or written by the script
+#' @param prov the provenance object
 #' @noRd
-generate.file.summary <- function (direction, files) {
+generate.file.summary <- function (direction, files, prov) {
   cat(direction, "\n")
   if (nrow(files) == 0) {
     cat ("None\n")
   }
   else {
-    file.info <- dplyr::select(files, "type", "name", "timestamp", "hash")
+    file.info <- dplyr::select(files, "type", "name", "value", "location", "hash", "timestamp")
+    
+    # Figure out which tool and version we are using.
+    tool.info <- provParseR::get.tool.info(prov)
+    tool <- tool.info$tool.name
+    version <- tool.info$tool.version
+    if (tool == "rdtLite" && utils::compareVersion (version, "1.0.3") < 0) {
+      use.original.timestamp <- TRUE
+    }
+    else if (tool == "rdt" && utils::compareVersion (version, "3.0.3") < 0) {
+      use.original.timestamp <- TRUE
+    }
+    else {
+      use.original.timestamp <- FALSE
+    }
+    
+    # In rdtLite before 1.0.3, and in rdt before 3.0.3, file times were
+    # not preserved when copying into the data directory.  Therefore, we needed
+    # to get the timestamp from the original file.  In later versions of the
+    # tools, the timestamps are preserved, so we use the timestamp in the
+    # saved copies.
+    if (use.original.timestamp) {
+      file.info$filetime <- as.character (file.mtime(file.info$location))
+    }
+    else {
+      environment <- provParseR::get.environment(prov)
+      prov.dir <- environment[environment$label == "provDirectory", ]$value
+      file.info$filetime <- as.character (file.mtime(paste0 (prov.dir, "/", file.info$value)))
+    }
+    
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
       cat(file.info[i, "name"], "\n")
-      if (file.info[i, "timestamp"] != "") cat("  ", file.info[i, "timestamp"], "\n")
+      if (is.na (file.info[i, "filetime"])) {
+        if (file.info[i, "timestamp"] != "") {
+          cat("  ", file.info[i, "timestamp"], "\n")
+        }
+      }
+      else {
+        cat("  ", file.info[i, "filetime"], "\n")
+      }
+        
       if (file.info[i, "hash"] != "") cat("  ", file.info[i, "hash"], "\n")
     }
   }
   cat("\n")
+}
+
+#' generate.error.summary creates the text summary for errors and warnings.  It identifies
+#' the line of code that produced the error as well as the error message
+#' @param prov the provenance object
+#' @noRd
+generate.error.summary <- function (prov) {
+  # Get the error nodes
+  data.nodes <- provParseR::get.data.nodes(prov)
+  error.nodes <- data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  
+  cat ("ERRORS:\n")
+  if (nrow(error.nodes) == 0) {
+    cat ("None\n")
+    return()
+  }
+
+  # Get the proc-data edges and the proc nodes
+  error.ids <- error.nodes$id
+  proc.data.edges <- provParseR::get.proc.data(prov)
+  proc.nodes <- provParseR::get.proc.nodes(prov)
+  
+  # Merge the data frames so that we have the error and the operation that
+  # produced that error in 1 row
+  error.report <- merge (error.nodes, proc.data.edges, by.x="id", by.y="entity")
+  error.report <- merge (error.report, proc.nodes, by.x="activity", by.y="id")
+  
+  # Get the scripts and remove the directory name
+  scripts <- provParseR::get.scripts(prov)
+  scripts <- sub (".*/", "", scripts$script)
+  
+  # Output the error information, using line numbers if it is available
+  for (i in 1:nrow(error.nodes)) {
+    cat ("In", scripts[error.report[i, "scriptNum"]])
+    if (is.na (error.report[i, "startLine"])) {
+      cat (" on line:\n")
+      cat ("  ", error.report[i, "name"], "\n")
+    }
+    else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
+             is.na (error.report[i, "endLine"])){
+      cat (" on line ", error.report[i, "startLine"], ":\n")
+      cat ("  ", error.report[i, "name"], "\n")
+    }
+    else {
+      cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], ":\n")
+      cat ("  ", error.report[i, "name"], "\n")
+    }
+    cat ("  ", error.report[i, "value"], "\n")
+  }
 }
 
 #' save.to.zip.file creates a zip file of the provenance directory
