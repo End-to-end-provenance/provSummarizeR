@@ -1,0 +1,21 @@
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+
+sudo: false
+cache: packages
+
+warnings_are_errors: true
+
+r_packages:
+  - dplyr
+
+r_github_packages:
+  - End-to-end-provenance/provParseR
+
+notifications:
+  slack: endtoendprovenance:DNYqXZWhV1c3eRhkjGYyjCEv
+
+
