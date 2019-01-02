@@ -305,7 +305,9 @@ generate.file.summary <- function (direction, files, prov) {
 generate.error.summary <- function (prov) {
   # Get the error nodes
   data.nodes <- provParseR::get.data.nodes(prov)
-  error.nodes <- data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  error.nodes <- 
+      if (nrow(data.nodes) == 0) data.nodes 
+      else data.nodes [data.nodes$type == "Exception", c("id", "value")]
   
   cat ("ERRORS:\n")
   if (nrow(error.nodes) == 0) {
