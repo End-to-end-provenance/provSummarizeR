@@ -1,5 +1,5 @@
 # Copyright (C) President and Fellows of Harvard College and 
-# Trustees of Mount Holyoke College, 2014, 2015, 2016, 2017, 2018.
+# Trustees of Mount Holyoke College, 2018.
 
 # This program is free software: you can redistribute it and/or
 # modify it under the terms of the GNU General Public License as
@@ -23,6 +23,22 @@
 #' a text summary to the R console
 #' 
 #' These functions use provenance collected using the rdtLite or rdt packages.
+#' 
+#' For provenance collected from executing a script file, the summary identifies:
+#' \itemize{
+#'   \item The name of the script file executed
+#'   \item Environmental information identifying when the script was executed, the version of R,
+#'      the computing system, the tool and version used to collect the provenance, the 
+#'      location of the provenance file, and the hash algorithm used to hash data files.
+#'   \item A list of libraries loaded and their versions
+#'   \item The names of any scripts sourced
+#'   \item The names of files input or output, the file timestamp, and its hashvalue
+#'   \item Any URLs loaded and the time loaded
+#'   \item Any errors or warnings along with the line on which they occurred, if known.
+#' }
+#' 
+#' For provenance collected from a console session, only the environment and library information
+#' appears in the summary.
 #' 
 #' Creating a zip file depends on a zip executable being on the search path.
 #' By default, it looks for a program named zip.  To use a program with 
@@ -171,23 +187,28 @@ save.to.text.file <- function(prov, environment) {
 #' @param environment the environemnt data frame extracted from the provenance
 #' @noRd
 generate.summaries <- function(prov, environment) {
-  generate.environment.summary (environment, provParseR::get.tool.info(prov))
+  script.path <- environment[environment$label == "script", ]$value
+  script.file <- sub(".*/", "", script.path)
+  
+  generate.environment.summary (environment, provParseR::get.tool.info(prov), script.file)
   generate.library.summary (provParseR::get.libs(prov))
-  generate.script.summary (provParseR::get.scripts(prov))
-  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
-  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
-  generate.error.summary (prov)
+  
+  if (script.file != "") {
+    generate.script.summary (provParseR::get.scripts(prov))
+    generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
+    generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
+    generate.error.summary (prov)
+  }
 }
 
 #' generate.environment.summary creates the text summary of the environment, writing it to the
 #' current output sink(s)
 #' @param environment the environemnt data frame extracted from the provenance
 #' @param tool.info the data frame containing information about the provenance collection tool that was used
+#' @param script.file the name of the script executed.  For provenance collected from 
+#'    a console session, the value is an empty string ("")
 #' @noRd
-generate.environment.summary <- function (environment, tool.info) {
-  script.path <- environment[environment$label == "script", ]$value
-  script.file <- sub(".*/", "", script.path)
-  
+generate.environment.summary <- function (environment, tool.info, script.file) {
   if (script.file != "") {
     cat (paste ("PROVENANCE SUMMARY for", script.file, "\n\n"))
   } else {
@@ -305,7 +326,9 @@ generate.file.summary <- function (direction, files, prov) {
 generate.error.summary <- function (prov) {
   # Get the error nodes
   data.nodes <- provParseR::get.data.nodes(prov)
-  error.nodes <- data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  error.nodes <- 
+      if (nrow(data.nodes) == 0) data.nodes 
+      else data.nodes [data.nodes$type == "Exception", c("id", "value")]
   
   cat ("ERRORS:\n")
   if (nrow(error.nodes) == 0) {
@@ -329,19 +352,22 @@ generate.error.summary <- function (prov) {
   
   # Output the error information, using line numbers if it is available
   for (i in 1:nrow(error.nodes)) {
-    cat ("In", scripts[error.report[i, "scriptNum"]])
-    if (is.na (error.report[i, "startLine"])) {
-      cat (" on line:\n")
-      cat ("  ", error.report[i, "name"], "\n")
-    }
-    else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
-             is.na (error.report[i, "endLine"])){
-      cat (" on line ", error.report[i, "startLine"], ":\n")
-      cat ("  ", error.report[i, "name"], "\n")
-    }
-    else {
-      cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], ":\n")
-      cat ("  ", error.report[i, "name"], "\n")
+    script.name <- scripts[error.report[i, "scriptNum"]]
+    if (!is.na (script.name)) {
+      cat ("In", scripts[error.report[i, "scriptNum"]])
+      if (is.na (error.report[i, "startLine"])) {
+        cat (" on line:\n")
+        cat ("  ", error.report[i, "name"], "\n")
+      }
+      else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
+               is.na (error.report[i, "endLine"])){
+        cat (" on line ", error.report[i, "startLine"], ":\n")
+        cat ("  ", error.report[i, "name"], "\n")
+      }
+      else {
+        cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], ":\n")
+        cat ("  ", error.report[i, "name"], "\n")
+      }
     }
     cat ("  ", error.report[i, "value"], "\n")
   }
