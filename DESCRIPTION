@@ -1,7 +1,7 @@
 Package: provSummarizeR
 Title: Summarizes Provenance Related to Inputs and Outputs of a Script or Console Commands
 Version: 1.0
-Date: 2019-01-04
+Date: 2019-01-09
 Authors@R: c( person("Barbara", "Lerner", role = "cre",
                       email = "blerner@cs.mtholyoke.edu"),
               person("Emery", "Boose", role = "aut",

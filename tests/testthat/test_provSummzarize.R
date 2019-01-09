@@ -12,3 +12,8 @@ expect_equal(length(summary), 41)
 test.script <- system.file("testscript", "warnings.R", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
 expect_equal(length(summary), 45)
+
+# Test console session
+test.data <- system.file("testdata", "console.json", package = "provSummarizeR", mustWork=TRUE)
+summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
+expect_equal(length(summary), 22)
