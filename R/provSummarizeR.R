@@ -171,23 +171,28 @@ save.to.text.file <- function(prov, environment) {
 #' @param environment the environemnt data frame extracted from the provenance
 #' @noRd
 generate.summaries <- function(prov, environment) {
-  generate.environment.summary (environment, provParseR::get.tool.info(prov))
+  script.path <- environment[environment$label == "script", ]$value
+  script.file <- sub(".*/", "", script.path)
+  
+  generate.environment.summary (environment, provParseR::get.tool.info(prov), script.file)
   generate.library.summary (provParseR::get.libs(prov))
-  generate.script.summary (provParseR::get.scripts(prov))
-  generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
-  generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
-  generate.error.summary (prov)
+  
+  if (script.file != "") {
+    generate.script.summary (provParseR::get.scripts(prov))
+    generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
+    generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
+    generate.error.summary (prov)
+  }
 }
 
 #' generate.environment.summary creates the text summary of the environment, writing it to the
 #' current output sink(s)
 #' @param environment the environemnt data frame extracted from the provenance
 #' @param tool.info the data frame containing information about the provenance collection tool that was used
+#' @param script.file the name of the script executed.  For provenance collected from 
+#'    a console session, the value is an empty string ("")
 #' @noRd
-generate.environment.summary <- function (environment, tool.info) {
-  script.path <- environment[environment$label == "script", ]$value
-  script.file <- sub(".*/", "", script.path)
-  
+generate.environment.summary <- function (environment, tool.info, script.file) {
   if (script.file != "") {
     cat (paste ("PROVENANCE SUMMARY for", script.file, "\n\n"))
   } else {
