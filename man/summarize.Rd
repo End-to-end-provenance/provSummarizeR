@@ -60,3 +60,11 @@ By default, it looks for a program named zip.  To use a program with
 a different name, set the value of the R_ZIPCMD environment variable.  This
 code has been tested with Unix zip and with 7-zip on Windows.
 }
+\examples{
+\dontrun{prov.summarize ()}
+testdata <- system.file("testdata", "prov.json", package = "provSummarize")
+prov.summarize.file (testdata)
+\dontrun{
+testdata <- system.file("testdata", "Console.R", package = "provSummarize")
+prov.summarize.run (testdata)}
+}
