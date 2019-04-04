@@ -52,6 +52,8 @@
 #'   into a zip file stored in the current working directory.
 #' 
 #' @export
+#' @examples 
+#' \dontrun{prov.summarize ()}
 #' @rdname summarize
 prov.summarize <- function (save=FALSE, create.zip=FALSE) {
   # Determine which provenance collector to use
@@ -72,6 +74,9 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
 #' a text summary to the R console
 #' 
 #' @export
+#' @examples 
+#' testdata <- system.file("testdata", "prov.json", package = "provSummarize")
+#' prov.summarize.file (testdata)
 #' @rdname summarize
 prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
   if (!file.exists(prov.file)) {
@@ -93,6 +98,10 @@ prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
 #'    or rdtLites's prov.run function for details.
 
 #' @export 
+#' @examples 
+#' \dontrun{
+#' testdata <- system.file("testdata", "Console.R", package = "provSummarize")
+#' prov.summarize.run (testdata)}
 #' @rdname summarize
 prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
   # Determine which provenance collector to use
