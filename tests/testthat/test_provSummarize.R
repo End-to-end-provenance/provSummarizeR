@@ -6,7 +6,7 @@ test.data <- system.file("testdata", "prov.json", package = "provSummarizeR", mu
 
 # Test prov.summarize.file
 summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
-expect_equal(length(summary), 42)
+expect_equal(length(summary), 41)
 
 # Test prov.summarize.run
 test.script <- system.file("testscript", "warnings.R", package = "provSummarizeR", mustWork=TRUE)
@@ -16,4 +16,4 @@ expect_equal(length(summary), 46)
 # Test console session
 test.data <- system.file("testdata", "console.json", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
-expect_equal(length(summary), 23)
+expect_equal(length(summary), 36)
