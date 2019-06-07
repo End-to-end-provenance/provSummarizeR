@@ -11,14 +11,14 @@ expect_equal(length(summary), 41)
 # Test prov.summarize.run
 test.script <- system.file("testscript", "warnings.R", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
-expect_equal(length(summary), 45)
+expect_equal(length(summary), 46)
 
 # Test console session
 test.data <- system.file("testdata", "console.json", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
-expect_equal(length(summary), 22)
+expect_equal(length(summary), 36)
 
 # Test files & urls
 test.data2 <- system.file("testscript", "prov_files/prov.json", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.file(test.data2))
-expect_equal(length(summary), 38)
+expect_equal(length(summary), 40)

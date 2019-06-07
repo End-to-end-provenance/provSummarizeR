@@ -226,6 +226,7 @@ generate.environment.summary <- function (environment, tool.info, script.file) {
   
   cat (paste ("ENVIRONMENT:\n"))
   cat (paste ("Executed at", environment[environment$label == "provTimestamp", ]$value, "\n"))
+  cat (paste ("Total execution time is", environment[environment$label == "totalElapsedTime", ]$value, "seconds\n"))
   
   if (script.file != "") {
     cat (paste ("Script last modified at", environment[environment$label == "scriptTimeStamp", ]$value, "\n"))
