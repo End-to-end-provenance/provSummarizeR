@@ -204,7 +204,7 @@ generate.summaries <- function(prov, environment) {
   
   if (script.file != "") {
     generate.script.summary (provParseR::get.scripts(prov))
-    generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
+    generate.file.summary ("INPUTS:", rbind (provParseR::get.input.files(prov), provParseR::get.urls(prov)), prov)
     generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
     generate.error.summary (prov)
   }
@@ -334,10 +334,7 @@ generate.file.summary <- function (direction, files, prov) {
 #' @noRd
 generate.error.summary <- function (prov) {
   # Get the error nodes
-  data.nodes <- provParseR::get.data.nodes(prov)
-  error.nodes <- 
-      if (nrow(data.nodes) == 0) data.nodes 
-      else data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  error.nodes <- provParseR::get.error.nodes(prov)
   
   cat ("ERRORS:\n")
   if (nrow(error.nodes) == 0) {
