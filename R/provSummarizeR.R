@@ -204,7 +204,7 @@ generate.summaries <- function(prov, environment) {
   
   if (script.file != "") {
     generate.script.summary (provParseR::get.scripts(prov))
-    generate.file.summary ("INPUTS:", rbind (provParseR::get.input.files(prov), provParseR::get.urls(prov)), prov)
+    generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
     generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
     generate.error.summary (prov)
   }
