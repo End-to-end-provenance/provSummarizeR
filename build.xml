@@ -35,7 +35,32 @@
 		</exec>
     </target>
     
-    <target name="cran-check" depends="build">
+	<target name="create-json">
+		<!-- Note that script2.r and warnings.r do not need to be here.  script2.r is sourced by
+		     another script but never run independently. warnings.r is tested with prov.summarize.run
+		     so we do not want precomputed provenance. -->
+		<antcall target="json">
+			<param name="theFile" value="console.R"/>
+		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="files.R"/>
+		</antcall>
+		<antcall target="json">
+			<param name="theFile" value="prov.R"/>
+		</antcall>
+	</target>
+	
+	<target name="json">
+		<echo message="${theFile}"/>
+		<exec executable="Rscript" dir="inst/testscripts">
+			<arg line="-e &quot;rdtLite::prov.run('${theFile}', prov.dir='.')&quot;"/>
+		</exec>
+		<basename property="scriptname" file="${theFile}" suffix="R" />
+		<move file="inst/testscripts/prov_${scriptname}/prov.json" tofile="inst/testdata/${scriptname}.json" />
+		<delete dir="inst/testscripts/prov_${scriptname}" />
+	</target>
+
+    <target name="cran-check" depends="build, create-json">
     	<exec executable="R" >
     		<arg line="CMD check --as-cran --no-vignettes --no-build-vignettes ${tarfile}"/>
     	</exec>

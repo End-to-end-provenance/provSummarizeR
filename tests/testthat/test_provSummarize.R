@@ -1,24 +1,31 @@
 library(provSummarizeR)
 library(testthat)
 
-## Loading test data
-test.data <- system.file("testdata", "prov.json", package = "provSummarizeR", mustWork=TRUE)
-
 # Test prov.summarize.file
-summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
-expect_equal(length(summary), 41)
+test.data <- system.file("testdata", "prov.json", package = "provSummarizeR", mustWork=TRUE)
+test.expected <- system.file("testsummaries", "prov.expected", package = "provSummarizeR", mustWork=TRUE)
+expect_known_output(prov.summarize.file(test.data, save = FALSE, create.zip = FALSE), test.expected, update = FALSE)
 
 # Test prov.summarize.run
-test.script <- system.file("testscript", "warnings.R", package = "provSummarizeR", mustWork=TRUE)
+test.script <- system.file("testscripts", "warnings.r", package = "provSummarizeR", mustWork=TRUE)
+test.expected <- system.file("testsummaries", "warnings.expected", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
-expect_equal(length(summary), 46)
+expected.summary <- readLines (test.expected)
+expect_equal(length(summary), length(expected.summary))
+expect_equal(summary[1:4], expected.summary[1:4])
+expect_equal(summary[12:45], expected.summary[12:45])
+# Can't test this like the others because some of the fields will change when it is run,
+# like execution time.
+#expect_known_output(prov.summarize.run(test.script), test.expected, update = FALSE)
 
 # Test console session
 test.data <- system.file("testdata", "console.json", package = "provSummarizeR", mustWork=TRUE)
-summary <- capture.output (prov.summarize.file(test.data, save = FALSE, create.zip = FALSE))
-expect_equal(length(summary), 36)
+test.expected <- system.file("testsummaries", "console.expected", package = "provSummarizeR", mustWork=TRUE)
+expect_known_output(prov.summarize.file(test.data, save = FALSE, create.zip = FALSE), test.expected, update = FALSE)
 
 # Test files & urls
-test.data2 <- system.file("testscript", "prov_files/prov.json", package = "provSummarizeR", mustWork=TRUE)
-summary <- capture.output (prov.summarize.file(test.data2))
-expect_equal(length(summary), 40)
+test.data2 <- system.file("testdata", "files.json", package = "provSummarizeR", mustWork=TRUE)
+test.expected <- system.file("testsummaries", "files.expected", package = "provSummarizeR", mustWork=TRUE)
+expect_known_output(prov.summarize.file(test.data2), test.expected, update = FALSE)
+
+
