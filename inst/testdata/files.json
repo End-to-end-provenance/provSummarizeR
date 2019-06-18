@@ -14,9 +14,9 @@
 
 	"activity" : {
 		"rdt:p1": {
-			"rdt:name": "console.R",
+			"rdt:name": "files.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.898",
+			"rdt:elapsedTime": "0.829",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -24,39 +24,39 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "a <- 1",
+			"rdt:name": "text <- readLines(\"warnings.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.045",
-			"rdt:scriptNum": 1,
-			"rdt:startLine": 2,
-			"rdt:startCol": 1,
-			"rdt:endLine": 2,
-			"rdt:endCol": 6
-		},
-		"rdt:p3": {
-			"rdt:name": "input <- readLines(\"Console.R\")",
-			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.011",
+			"rdt:elapsedTime": "0.054",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
 			"rdt:endLine": 3,
-			"rdt:endCol": 32
+			"rdt:endCol": 31
 		},
-		"rdt:p4": {
-			"rdt:name": "sort(input)",
+		"rdt:p3": {
+			"rdt:name": "webpage <- readLines(\"https://harvardforest.fas.harvard.edu/",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.027",
+			"rdt:elapsedTime": "0.057",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
 			"rdt:endLine": 4,
-			"rdt:endCol": 12
+			"rdt:endCol": 63
+		},
+		"rdt:p4": {
+			"rdt:name": "writeLines(text, tempfile())",
+			"rdt:type": "Operation",
+			"rdt:elapsedTime": "0.445",
+			"rdt:scriptNum": 1,
+			"rdt:startLine": 6,
+			"rdt:startCol": 1,
+			"rdt:endLine": 6,
+			"rdt:endCol": 29
 		},
 		"rdt:p5": {
-			"rdt:name": "console.R",
+			"rdt:name": "files.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.004",
+			"rdt:elapsedTime": "0.006",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -67,37 +67,59 @@
 
 	"entity" : {
 		"rdt:d1": {
-			"rdt:name": "a",
-			"rdt:value": "1",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
-			"rdt:fromEnv": false,
-			"rdt:hash": "",
-			"rdt:timestamp": "",
-			"rdt:location": ""
-		},
-		"rdt:d2": {
-			"rdt:name": "Console.R",
-			"rdt:value": "data/2-Console.R",
+			"rdt:name": "warnings.R",
+			"rdt:value": "data/1-warnings.R",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "b63e0c0d2fc6d917c4c7cb2c49c0c373",
-			"rdt:timestamp": "2019-06-17T15.35.33EDT",
-			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R"
+			"rdt:hash": "98df07892024a178e3130013c1f6c31e",
+			"rdt:timestamp": "2019-06-17T15.35.34EDT",
+			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/warnings.r"
 		},
-		"rdt:d3": {
-			"rdt:name": "input",
-			"rdt:value": "\"# Code that was run at the console to generate console.json\"...",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[4], \"type\":[\"character\"]}",
+		"rdt:d2": {
+			"rdt:name": "text",
+			"rdt:value": "\"warning (\\\"Warning 1\\\")\"\t\t\t\"\"\t\t\t\t\t\t\t\t  ...",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[7], \"type\":[\"character\"]}",
 			"rdt:type": "Data",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
+		},
+		"rdt:d3": {
+			"rdt:name": "https://harvardforest.fas.harvard.edu/",
+			"rdt:value": "data/3-harvardforest.fas.harvard.edu",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "URL",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "2019-06-17T15.35.37EDT",
+			"rdt:location": ""
+		},
+		"rdt:d4": {
+			"rdt:name": "webpage",
+			"rdt:value": "\"<!DOCTYPE html PUBLIC \\\"-//W3C//DTD XHTML+RDFa 1.0//EN\\\"\"\t\t\t\t\t  ...",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1060], \"type\":[\"character\"]}",
+			"rdt:type": "Data",
+			"rdt:scope": "R_GlobalEnv",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"rdt:d5": {
+			"rdt:name": "file16fc11d12c6f0",
+			"rdt:value": "data/5-file16fc11d12c6f0",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "File",
+			"rdt:scope": "undefined",
+			"rdt:fromEnv": false,
+			"rdt:hash": "6fcc1b07827c765a942d4aa39516c163",
+			"rdt:timestamp": "2019-06-17T15.35.38EDT",
+			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/Rtmp7I3PoT/file16fc11d12c6f0"
 		},
 
 		"rdt:environment": {
@@ -106,14 +128,14 @@
 			"rdt:operatingSystem": "darwin15.6.0",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
-			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R",
-			"rdt:scriptTimeStamp": "2019-06-07T13.31.29EDT",
-			"rdt:totalElapsedTime": "0.985",
+			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/files.R",
+			"rdt:scriptTimeStamp": "2019-06-12T15.16.12EDT",
+			"rdt:totalElapsedTime": "1.391",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
-			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_console",
-			"rdt:provTimestamp": "2019-06-17T15.35.32EDT",
+			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_files",
+			"rdt:provTimestamp": "2019-06-17T15.35.33EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -205,21 +227,29 @@
 	"wasGeneratedBy" : {
 		"rdt:pd1": {
 			"prov:activity": "rdt:p2",
-			"prov:entity": "rdt:d1"
+			"prov:entity": "rdt:d2"
 		},
 		"rdt:pd2": {
 			"prov:activity": "rdt:p3",
-			"prov:entity": "rdt:d3"
+			"prov:entity": "rdt:d4"
+		},
+		"rdt:pd3": {
+			"prov:activity": "rdt:p4",
+			"prov:entity": "rdt:d5"
 		}
 	},
 
 	"used" : {
 		"rdt:dp1": {
-			"prov:entity": "rdt:d2",
-			"prov:activity": "rdt:p3"
+			"prov:entity": "rdt:d1",
+			"prov:activity": "rdt:p2"
 		},
 		"rdt:dp2": {
 			"prov:entity": "rdt:d3",
+			"prov:activity": "rdt:p3"
+		},
+		"rdt:dp3": {
+			"prov:entity": "rdt:d2",
 			"prov:activity": "rdt:p4"
 		}
 	}

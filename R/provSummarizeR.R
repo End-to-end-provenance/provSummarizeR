@@ -75,7 +75,7 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
 #' 
 #' @export
 #' @examples 
-#' testdata <- system.file("testdata", "prov.json", package = "provSummarize")
+#' testdata <- system.file("testdata", "prov.json", package = "provSummarizeR")
 #' prov.summarize.file (testdata)
 #' @rdname summarize
 prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
@@ -100,7 +100,7 @@ prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
 #' @export 
 #' @examples 
 #' \dontrun{
-#' testdata <- system.file("testdata", "Console.R", package = "provSummarize")
+#' testdata <- system.file("testscripts", "console.R", package = "provSummarizeR")
 #' prov.summarize.run (testdata)}
 #' @rdname summarize
 prov.summarize.run <- function(r.script, save=FALSE, create.zip=FALSE, ...) {
@@ -335,10 +335,7 @@ generate.file.summary <- function (direction, files, prov) {
 #' @noRd
 generate.error.summary <- function (prov) {
   # Get the error nodes
-  data.nodes <- provParseR::get.data.nodes(prov)
-  error.nodes <- 
-      if (nrow(data.nodes) == 0) data.nodes 
-      else data.nodes [data.nodes$type == "Exception", c("id", "value")]
+  error.nodes <- provParseR::get.error.nodes(prov)
   
   cat ("ERRORS:\n")
   if (nrow(error.nodes) == 0) {
