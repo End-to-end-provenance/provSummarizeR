@@ -62,9 +62,9 @@ code has been tested with Unix zip and with 7-zip on Windows.
 }
 \examples{
 \dontrun{prov.summarize ()}
-testdata <- system.file("testdata", "prov.json", package = "provSummarize")
+testdata <- system.file("testdata", "prov.json", package = "provSummarizeR")
 prov.summarize.file (testdata)
 \dontrun{
-testdata <- system.file("testdata", "Console.R", package = "provSummarize")
+testdata <- system.file("testscripts", "console.R", package = "provSummarizeR")
 prov.summarize.run (testdata)}
 }
