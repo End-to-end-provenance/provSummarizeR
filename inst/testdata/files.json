@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "files.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.829",
+			"rdt:elapsedTime": "0.809",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +26,7 @@
 		"rdt:p2": {
 			"rdt:name": "text <- readLines(\"warnings.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.054",
+			"rdt:elapsedTime": "0.045",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "webpage <- readLines(\"https://harvardforest.fas.harvard.edu/",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.057",
+			"rdt:elapsedTime": "0.053",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -56,7 +56,7 @@
 		"rdt:p5": {
 			"rdt:name": "files.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.006",
+			"rdt:elapsedTime": "0.009",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -74,7 +74,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "98df07892024a178e3130013c1f6c31e",
-			"rdt:timestamp": "2019-06-17T15.35.34EDT",
+			"rdt:timestamp": "2019-06-18T11.17.59EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/warnings.r"
 		},
 		"rdt:d2": {
@@ -96,7 +96,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-06-17T15.35.37EDT",
+			"rdt:timestamp": "2019-06-18T11.18.02EDT",
 			"rdt:location": ""
 		},
 		"rdt:d4": {
@@ -111,15 +111,15 @@
 			"rdt:location": ""
 		},
 		"rdt:d5": {
-			"rdt:name": "file16fc11d12c6f0",
-			"rdt:value": "data/5-file16fc11d12c6f0",
+			"rdt:name": "file7c676a13c18f",
+			"rdt:value": "data/5-file7c676a13c18f",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "6fcc1b07827c765a942d4aa39516c163",
-			"rdt:timestamp": "2019-06-17T15.35.38EDT",
-			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/Rtmp7I3PoT/file16fc11d12c6f0"
+			"rdt:hash": "27d38f4b910888a51d3a7d510449a913",
+			"rdt:timestamp": "2019-06-18T11.18.03EDT",
+			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/RtmpW1wTbm/file7c676a13c18f"
 		},
 
 		"rdt:environment": {
@@ -130,12 +130,12 @@
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/files.R",
 			"rdt:scriptTimeStamp": "2019-06-12T15.16.12EDT",
-			"rdt:totalElapsedTime": "1.391",
+			"rdt:totalElapsedTime": "1.361",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_files",
-			"rdt:provTimestamp": "2019-06-17T15.35.33EDT",
+			"rdt:provTimestamp": "2019-06-18T11.17.58EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
