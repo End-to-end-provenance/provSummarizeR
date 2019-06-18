@@ -16,7 +16,7 @@
 		"rdt:p1": {
 			"rdt:name": "console.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.844",
+			"rdt:elapsedTime": "0.85",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +26,7 @@
 		"rdt:p2": {
 			"rdt:name": "a <- 1",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.044",
+			"rdt:elapsedTime": "0.049",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -36,7 +36,7 @@
 		"rdt:p3": {
 			"rdt:name": "input <- readLines(\"Console.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.01",
+			"rdt:elapsedTime": "0.009",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -46,7 +46,7 @@
 		"rdt:p4": {
 			"rdt:name": "sort(input)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.024",
+			"rdt:elapsedTime": "0.032",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -85,7 +85,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "b63e0c0d2fc6d917c4c7cb2c49c0c373",
-			"rdt:timestamp": "2019-06-18T11.17.58EDT",
+			"rdt:timestamp": "2019-06-18T13.08.10EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R"
 		},
 		"rdt:d3": {
@@ -108,12 +108,12 @@
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R",
 			"rdt:scriptTimeStamp": "2019-06-07T13.31.29EDT",
-			"rdt:totalElapsedTime": "0.926",
+			"rdt:totalElapsedTime": "0.944",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_console",
-			"rdt:provTimestamp": "2019-06-18T11.17.57EDT",
+			"rdt:provTimestamp": "2019-06-18T13.08.09EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
