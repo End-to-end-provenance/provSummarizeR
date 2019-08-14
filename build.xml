@@ -48,6 +48,9 @@
 		<antcall target="create-one-json">
 			<param name="script" value="prov"/>
 		</antcall>
+		<!--<antcall target="create-one-json">
+			<param name="script" value="warnings"/>
+		</antcall>-->
 	</target>
 	
 	<target name="create-one-json">

@@ -35,6 +35,7 @@
 #'   \item The names of files input or output, the file timestamp, and its hashvalue
 #'   \item Any URLs loaded and the time loaded
 #'   \item Any errors or warnings along with the line on which they occurred, if known.
+#'   \item Any messages sent to standard output along with the line on which they occurred, if known.
 #' }
 #' 
 #' For provenance collected from a console session, only the environment and library information
@@ -207,6 +208,7 @@ generate.summaries <- function(prov, environment) {
     generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
     generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
     generate.error.summary (prov)
+    generate.stdout.summary (prov)
   }
 }
 
@@ -336,48 +338,70 @@ generate.file.summary <- function (direction, files, prov) {
 generate.error.summary <- function (prov) {
   # Get the error nodes
   error.nodes <- provParseR::get.error.nodes(prov)
+  generate.message.summary (prov, error.nodes, "ERRORS")
+}
+
+#' generate.stdout.summary creates the text summary for messages sent to
+#' standard output.  It identifies
+#' the line of code that produced the message as well as the message.
+#' If the output is long, it identifies the snapshot file instead.
+#' @param prov the provenance object
+#' @noRd
+generate.stdout.summary <- function (prov) {
+  # Get the standard output nodes
+  stdout.nodes <- provParseR::get.stdout.nodes(prov)
   
-  cat ("ERRORS:\n")
-  if (nrow(error.nodes) == 0) {
+  generate.message.summary(prov, stdout.nodes, "OUTPUT TO SCREEN")
+}
+
+#' generate.message.summary creates the text summary for messages sent to
+#' standard output.  It identifies
+#' the line of code that produced the message as well as the message.
+#' If the output is long, it identifies the snapshot file instead.
+#' @param prov the provenance object
+#' @noRd
+generate.message.summary <- function (prov, output.nodes, msg) {
+  cat (msg, ":\n", sep="")
+  if (nrow(output.nodes) == 0) {
     cat ("None\n")
     return()
   }
-
+  
   # Get the proc-data edges and the proc nodes
-  error.ids <- error.nodes$id
   proc.data.edges <- provParseR::get.proc.data(prov)
   proc.nodes <- provParseR::get.proc.nodes(prov)
   
-  # Merge the data frames so that we have the error and the operation that
-  # produced that error in 1 row
-  error.report <- merge (error.nodes, proc.data.edges, by.x="id", by.y="entity")
-  error.report <- merge (error.report, proc.nodes, by.x="activity", by.y="id")
+  # Merge the data frames so that we have the output and the operation that
+  # produced that output in 1 row
+  output.report <- merge (output.nodes, proc.data.edges, by.x="id", by.y="entity")
+  output.report <- merge (output.report, proc.nodes, by.x="activity", by.y="id")
   
   # Get the scripts and remove the directory name
   scripts <- provParseR::get.scripts(prov)
   scripts <- sub (".*/", "", scripts$script)
   
   # Output the error information, using line numbers if it is available
-  for (i in 1:nrow(error.nodes)) {
-    script.name <- scripts[error.report[i, "scriptNum"]]
+  for (i in 1:nrow(output.nodes)) {
+    script.name <- scripts[output.report[i, "scriptNum"]]
     if (!is.na (script.name)) {
-      cat ("In", scripts[error.report[i, "scriptNum"]])
-      if (is.na (error.report[i, "startLine"])) {
+      cat ("In", scripts[output.report[i, "scriptNum"]])
+      if (is.na (output.report[i, "startLine"])) {
         cat (" on line:\n")
-        cat ("  ", error.report[i, "name"], "\n")
+        cat ("  ", output.report[i, "name"], "\n")
       }
-      else if (error.report[i, "startLine"] == error.report[i, "endLine"] || 
-               is.na (error.report[i, "endLine"])){
-        cat (" on line ", error.report[i, "startLine"], ":\n")
-        cat ("  ", error.report[i, "name"], "\n")
+      else if (output.report[i, "startLine"] == output.report[i, "endLine"] || 
+          is.na (output.report[i, "endLine"])){
+        cat (" on line ", output.report[i, "startLine"], ":\n")
+        cat ("  ", output.report[i, "name"], "\n")
       }
       else {
-        cat (" on lines ", error.report[i, "startLine"], " to ", error.report[i, "endLine"], ":\n")
-        cat ("  ", error.report[i, "name"], "\n")
+        cat (" on lines ", output.report[i, "startLine"], " to ", output.report[i, "endLine"], ":\n")
+        cat ("  ", output.report[i, "name"], "\n")
       }
     }
-    cat ("  ", error.report[i, "value"], "\n")
+    cat ("  ", output.report[i, "value"], "\n")
   }
+  cat("\n")
 }
 
 #' save.to.zip.file creates a zip file of the provenance directory

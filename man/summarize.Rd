@@ -50,6 +50,7 @@ For provenance collected from executing a script file, the summary identifies:
   \item The names of files input or output, the file timestamp, and its hashvalue
   \item Any URLs loaded and the time loaded
   \item Any errors or warnings along with the line on which they occurred, if known.
+  \item Any messages sent to standard output along with the line on which they occurred, if known.
 }
 
 For provenance collected from a console session, only the environment and library information
