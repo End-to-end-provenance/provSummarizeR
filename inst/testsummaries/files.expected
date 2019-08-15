@@ -1,8 +1,8 @@
 PROVENANCE SUMMARY for files.R 
 
 ENVIRONMENT:
-Executed at 2019-08-14T15.41.33EDT 
-Total execution time is 1.57 seconds
+Executed at 2019-08-15T11.18.11EDT 
+Total execution time is 1.338 seconds
 Script last modified at 2019-08-12T16.53.18EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
@@ -25,18 +25,20 @@ None
 
 INPUTS: 
 File : warnings.R 
-   2019-08-14T15.41.34EDT 
+   2019-08-15T11.18.12EDT 
    3c87e73e0d9a01fa6b330e2b11ad0da1 
 URL : https://harvardforest.fas.harvard.edu/ 
-   2019-08-14T15.41.37EDT 
-   098d4515eab2aea0f94691c28cc2e3b2 
+   2019-08-15T11.18.15EDT 
+   d78e875651f8f2c0e03df11ce61cfec3 
 
 OUTPUTS: 
-File : filef7ec7db58932 
-   2019-08-14T15.41.37EDT 
+File : file174b4b2f0e2b 
+   2019-08-15T11.18.15EDT 
    3c87e73e0d9a01fa6b330e2b11ad0da1 
 
 ERRORS:
 None
+
 OUTPUT TO SCREEN:
 None
+

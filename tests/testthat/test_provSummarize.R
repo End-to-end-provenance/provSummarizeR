@@ -14,7 +14,10 @@ expected.summary <- readLines (test.expected)
 expect_equal(length(summary), length(expected.summary))
 expect_equal(summary[1:4], expected.summary[1:4])
 expect_equal(summary[12:14], expected.summary[12:14])
-expect_equal(summary[26:45], expected.summary[26:45])
+expect_equal(summary[26:36], expected.summary[26:36])
+expect_equal(summary[38], expected.summary[38])
+expect_equal(summary[40], expected.summary[40])
+expect_equal(summary[42:46], expected.summary[42:46])
 # Can't test this like the others because some of the fields will change when it is run,
 # like execution time.
 #expect_known_output(prov.summarize.run(test.script), test.expected, update = FALSE)

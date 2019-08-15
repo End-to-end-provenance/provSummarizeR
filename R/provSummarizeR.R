@@ -363,7 +363,7 @@ generate.stdout.summary <- function (prov) {
 generate.message.summary <- function (prov, output.nodes, msg) {
   cat (msg, ":\n", sep="")
   if (nrow(output.nodes) == 0) {
-    cat ("None\n")
+    cat ("None\n\n")
     return()
   }
   
@@ -375,6 +375,7 @@ generate.message.summary <- function (prov, output.nodes, msg) {
   # produced that output in 1 row
   output.report <- merge (output.nodes, proc.data.edges, by.x="id", by.y="entity")
   output.report <- merge (output.report, proc.nodes, by.x="activity", by.y="id")
+  
   
   # Get the scripts and remove the directory name
   scripts <- provParseR::get.scripts(prov)
@@ -392,11 +393,13 @@ generate.message.summary <- function (prov, output.nodes, msg) {
       else if (output.report[i, "startLine"] == output.report[i, "endLine"] || 
           is.na (output.report[i, "endLine"])){
         cat (" on line ", output.report[i, "startLine"], ":\n")
-        cat ("  ", output.report[i, "name"], "\n")
+        # Omit source code if the line number is known
+        #cat ("  ", output.report[i, "name"], "\n")
       }
       else {
         cat (" on lines ", output.report[i, "startLine"], " to ", output.report[i, "endLine"], ":\n")
-        cat ("  ", output.report[i, "name"], "\n")
+        # Omit source code if the line number is known
+        #cat ("  ", output.report[i, "name"], "\n")
       }
     }
     cat ("  ", output.report[i, "value"], "\n")

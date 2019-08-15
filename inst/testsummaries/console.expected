@@ -1,8 +1,8 @@
 PROVENANCE SUMMARY for console.R 
 
 ENVIRONMENT:
-Executed at 2019-08-14T15.41.25EDT 
-Total execution time is 1.164 seconds
+Executed at 2019-08-15T11.18.01EDT 
+Total execution time is 1.125 seconds
 Script last modified at 2019-08-12T16.53.18EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
@@ -25,7 +25,7 @@ None
 
 INPUTS: 
 File : Console.R 
-   2019-08-14T15.41.27EDT 
+   2019-08-15T11.18.02EDT 
    3bd3b7810625fb421d2ecbaa4d569520 
 
 OUTPUTS: 
@@ -33,5 +33,7 @@ None
 
 ERRORS:
 None
+
 OUTPUT TO SCREEN:
 None
+

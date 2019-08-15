@@ -1,8 +1,8 @@
 PROVENANCE SUMMARY for prov.R 
 
 ENVIRONMENT:
-Executed at 2019-08-14T15.41.46EDT 
-Total execution time is 1.261 seconds
+Executed at 2019-08-15T11.18.22EDT 
+Total execution time is 1.382 seconds
 Script last modified at 2019-08-14T15.10.48EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
@@ -26,21 +26,20 @@ script2.r
 
 INPUTS: 
 File : in.txt 
-   2019-08-14T15.41.47EDT 
+   2019-08-15T11.18.23EDT 
    732d814761d044c919425662375691de 
 
 OUTPUTS: 
 File : out.txt 
-   2019-08-14T15.41.47EDT 
+   2019-08-15T11.18.23EDT 
    732d814761d044c919425662375691de 
 
 ERRORS:
 None
+
 OUTPUT TO SCREEN:
 In prov.R on line  4 :
-   print ("foo") 
    "foo" 
 In prov.R on line  5 :
-   print (input) 
-   "Anteater\t"						  "by Shel Silverstein\t"			  ... 
+   /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov/data/4-output.txt 
 
