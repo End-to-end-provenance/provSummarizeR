@@ -27,7 +27,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    provParseR (>= 0.1.2)
+    provParseR (>= 0.2)
 Suggests:
     rdtLite,
     rdt,

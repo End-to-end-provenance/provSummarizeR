@@ -2,13 +2,13 @@
 PROVENANCE SUMMARY for warnings.r 
 
 ENVIRONMENT:
-Executed at 2019-06-17T15.56.41EDT 
-Total execution time is 0.389 seconds
-Script last modified at 2019-01-09T13.32.49EST 
+Executed at 2019-08-12T17.06.59EDT 
+Total execution time is 1.093 seconds
+Script last modified at 2019-08-12T16.53.18EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
 Provenance was collected with rdtLite 1.1.1 
-Provenance is stored in ~/tmp/prov/prov_warnings 
+Provenance is stored in /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_warnings 
 Hash algorithm is md5 
 
 LIBRARIES:
@@ -18,7 +18,7 @@ ggplot2 3.1.1
 graphics 3.6.0
 grDevices 3.6.0
 methods 3.6.0
-provParseR 0.1.2
+provParseR 0.2
 provSummarizeR 1.1
 stats 3.6.0
 testthat 2.1.1
@@ -35,12 +35,13 @@ None
 
 ERRORS:
 In warnings.r on line  1 :
-   warning("Warning 1") 
    In  eval(annot, environ, NULL) :  Warning 1 
 In warnings.r on lines  3  to  5 :
-   if (1 == 1) {	warning("Multi-line warning")} 
    In  eval(annot, environ, NULL) :  Multi-line warning 
 In warnings.r on line  7 :
-   x <- foo 
    Error in eval(annot, environ, NULL): object 'foo' not found
+ 
+
+OUTPUT TO SCREEN:
+None
 

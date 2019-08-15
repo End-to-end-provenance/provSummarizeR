@@ -13,7 +13,7 @@ r_packages:
   - rdtLite
 
 r_github_packages:
-  - End-to-end-provenance/provParseR
+  - End-to-end-provenance/provParseR#23
   - End-to-end-provenance/rdt
 
 notifications:

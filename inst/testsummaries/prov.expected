@@ -1,9 +1,9 @@
 PROVENANCE SUMMARY for prov.R 
 
 ENVIRONMENT:
-Executed at 2019-06-18T13.08.38EDT 
-Total execution time is 0.931 seconds
-Script last modified at 2019-06-17T15.28.22EDT 
+Executed at 2019-08-15T11.18.22EDT 
+Total execution time is 1.382 seconds
+Script last modified at 2019-08-14T15.10.48EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
 Provenance was collected with rdtLite 1.1.1 
@@ -22,17 +22,24 @@ utils 3.6.0
 
 SOURCED SCRIPTS:
 script2.r 
-   2019-06-07T14.43.44EDT 
+   2019-08-12T16.53.18EDT 
 
 INPUTS: 
 File : in.txt 
-   2019-06-18T13.08.39EDT 
-   52dbff5d488efed73caf540c9476aa01 
+   2019-08-15T11.18.23EDT 
+   732d814761d044c919425662375691de 
 
 OUTPUTS: 
 File : out.txt 
-   2019-06-18T13.08.39EDT 
-   a4a33d050511356b2108669380684498 
+   2019-08-15T11.18.23EDT 
+   732d814761d044c919425662375691de 
 
 ERRORS:
 None
+
+OUTPUT TO SCREEN:
+In prov.R on line  4 :
+   "foo" 
+In prov.R on line  5 :
+   /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov/data/4-output.txt 
+
