@@ -61,49 +61,60 @@ other zip programs.  To use a program other than zip, set the R_ZIPCMD environme
 
 ## Example
 
-Here is an example of what the summary looks like.  It first identifies the script executed.
-Next it describes details of how and when the script was executed.  It then lists the libraries
-that were used during execution, any additional scripts sourced, and the input and
-output files.
+Here is an example of what the summary looks like. The first line contains the name of 
+the main R script. The ENVIRONMENT section includes details describing how and when the 
+script was executed and how the provenance was collected. The LIBRARIES section lists all
+libraries that were loaded along with their version numbers. The SOURCED SCRIPTS section 
+lists any scripts that were sourced. The INPUTS section lists any input files or URLs. 
+The OUTPUTS section lists any output files. The CONSOLE section lists any output to the 
+screen. Finally the ERRORS section lists any error or warning messages that were generated 
+when the script was executed.
 
 ```
-PROVENANCE SUMMARY for script.R 
+PROVENANCE SUMMARY for basicTest.R 
 
 ENVIRONMENT:
-Executed at 2018-11-29T16.52.34EST 
-Script last modified at 2018-11-29T16.34.54EST 
-Executed with R version 3.5.1 (2018-07-02) 
-Executed on x86_64 running darwin15.6.0 
-Provenance was collected with rdtLite 1.0.2 
-Provenance is stored in /Users/blerner/Documents/scripts/prov_script 
+Executed at 2019-08-26T10.08.19EDT 
+Total execution time is 6.3 seconds
+Script last modified at 2019-01-02T12.43.34EST 
+Executed with R version 3.6.1 (2019-07-05) 
+Executed on x86_64 running mingw32 
+Provenance was collected with rdtLite 1.1.1 
+Provenance is stored in C:/Prov/prov_basicTest 
 Hash algorithm is md5 
 
 LIBRARIES:
-base 3.5.1
-datasets 3.5.1
-ggplot2 3.0.0
-graphics 3.5.1
-grDevices 3.5.1
-methods 3.5.1
-provSummarizeR 1.0
-rdtLite 1.0.2
-stats 3.5.1
-utils 3.5.1
+base 3.6.1
+datasets 3.6.1
+ggplot2 3.2.1
+graphics 3.6.1
+grDevices 3.6.1
+methods 3.6.1
+rdtLite 1.1.1
+stats 3.6.1
+utils 3.6.1
 
 SOURCED SCRIPTS:
 None
 
 INPUTS: 
-File : in.txt 
-   2018-11-29T16.52.35EST 
-   52dbff5d488efed73caf540c9476aa01 
-File : script2.R 
-   2018-11-29T16.52.35EST 
-   422b85c26655e3192dece05303b58c11 
+URL : http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv 
+   2019-08-26 10:08:26 
+   76551e9b09d96eb70bba9ae7a16aab9a 
 
 OUTPUTS: 
-File : out.txt 
-   2018-11-29T16.52.35EST 
-   a4a33d050511356b2108669380684498 
+File : shortdata.csv 
+   2019-08-26 10:08:27 
+   58725476ca78c8feb08ad15602d8a006 
+File : airt-vs-prec.pdf 
+   2019-08-26 10:08:27 
+   ea5167eff2c4e26d0525a8cb50ad8bb9 
+
+CONSOLE:
+None
+
+ERRORS:
+In basicTest.R on line  66 :
+   Error in file(file, "rt"): cannot open the connection
 ```
 
