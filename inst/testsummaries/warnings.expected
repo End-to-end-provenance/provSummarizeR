@@ -33,6 +33,9 @@ None
 OUTPUTS: 
 None
 
+CONSOLE:
+None
+
 ERRORS:
 In warnings.r on line  1 :
    In  eval(annot, environ, NULL) :  Warning 1 
@@ -41,7 +44,4 @@ In warnings.r on lines  3  to  5 :
 In warnings.r on line  7 :
    Error in eval(annot, environ, NULL): object 'foo' not found
  
-
-OUTPUT TO SCREEN:
-None
 

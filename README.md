@@ -1,11 +1,10 @@
 ## provSummarizeR
-Reads the provenance created by the execution of a script or from
-commands in the console and provides
-a human-readable summary identifying the input and output files, the script used (if any),
-and the environment in which it was executed.  It can also optionally package all the files
-into a zip file.
+Reads the provenance collected by rdtLite or rdt from execution of a script or commands
+in the console. Creates a human-readable summary of the provenance, including details 
+on the computing environment, loaded libraries, scripts used (if any), input and output
+files, console output, and error and warning messages. The summary is optionally saved 
+to a text file and all related provenance files are optionally packaged in a zip file.
 
-provSummarizeR works with provenance collected by the rdt or rdtLite packages.
 
 ## Installation
 Install from GitHub:
@@ -24,23 +23,21 @@ library("provSummarizeR")
 ## Usage
 The summarize functions can be used in one of three ways.
 
-1. To run script.R, collect and summarize its provenance all in one step:
+1. To sumarize the last provenance collected in the current R session:
+
+```{r}
+prov.summarize ()
+```
+
+2. To run the script <i>script.R</i>, collect provenance, and summarize 
+the provenance all in one step:
 
 ```
 prov.summarize.run ("script.R")
 ```
 
-2. To summarize provenance of the last script provenance was collected for:
-
-```{r}
-rdtLite::prov.run ("script.R")
-prov.summarize ()
-```
-
-3. To summarize provenance that was collected in the past, you need to pass
-in the prov.json file, which is inside the provenance directory.  For example,
-if you previously collected provenance and it is stored in a directory <i>prov_script</i>,
-you would say:
+3. To summarize provenance that was collected in the past and stored in the file
+<i>prov.json</i> on the directory <i>prov_script</i>:
 
 ```{r}
 prov.summarize.file ("prov_script/prov.json")
@@ -48,17 +45,17 @@ prov.summarize.file ("prov_script/prov.json")
 
 All three functions have two optional parameters, <i>save</i> and <i>create.zip</i>.  
 
-If <i>save</i> is true, the summary is saved to a file, in addition to being displayed
-in the console.  The file is named <i>prov-summary.txt</i> and is stored in the provenance
-directory.  The default value of <i>save</i> is false.
+If <i>save</i> is true, the summary is saved to a text file, in addition to being displayed
+in the console.  The file is named <i>prov-summary.txt</i> and is stored in the current
+provenance directory.  The default value of <i>save</i> is false.
 
 If <i>create.zip</i> is true, the provenance directory is packaged into a timestamped zip file
 and placed in the current working directory.  This file will contain a copy of all input and
 output files and scripts used, as well as the <i>prov-summary.txt</i> if <i>save</i> is true.
-It also include the <i>prov.json</i> file containing the detailed execution trace.  The default
+It also includes the <i>prov.json</i> file containing the detailed execution trace.  The default
 value of <i>create.zip</i> is false.
 
-Creating the zip file depends on the use of an external zip program.  It has been
+Creating the zip file depends on use of an external zip program.  It has been
 tested with zip for Unix/Mac OS and with 7z on Windows.  It may or may not work with
 other zip programs.  To use a program other than zip, set the R_ZIPCMD environment variable.
 

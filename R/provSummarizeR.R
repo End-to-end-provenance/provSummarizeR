@@ -207,8 +207,8 @@ generate.summaries <- function(prov, environment) {
     generate.script.summary (provParseR::get.scripts(prov))
     generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
     generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
-    generate.error.summary (prov)
     generate.stdout.summary (prov)
+    generate.error.summary (prov)
   }
 }
 
@@ -331,16 +331,6 @@ generate.file.summary <- function (direction, files, prov) {
   cat("\n")
 }
 
-#' generate.error.summary creates the text summary for errors and warnings.  It identifies
-#' the line of code that produced the error as well as the error message
-#' @param prov the provenance object
-#' @noRd
-generate.error.summary <- function (prov) {
-  # Get the error nodes
-  error.nodes <- provParseR::get.error.nodes(prov)
-  generate.message.summary (prov, error.nodes, "ERRORS")
-}
-
 #' generate.stdout.summary creates the text summary for messages sent to
 #' standard output.  It identifies
 #' the line of code that produced the message as well as the message.
@@ -351,7 +341,17 @@ generate.stdout.summary <- function (prov) {
   # Get the standard output nodes
   stdout.nodes <- provParseR::get.stdout.nodes(prov)
   
-  generate.message.summary(prov, stdout.nodes, "OUTPUT TO SCREEN")
+  generate.message.summary(prov, stdout.nodes, "CONSOLE")
+}
+
+#' generate.error.summary creates the text summary for errors and warnings.  It identifies
+#' the line of code that produced the error as well as the error message
+#' @param prov the provenance object
+#' @noRd
+generate.error.summary <- function (prov) {
+  # Get the error nodes
+  error.nodes <- provParseR::get.error.nodes(prov)
+  generate.message.summary(prov, error.nodes, "ERRORS")
 }
 
 #' generate.message.summary creates the text summary for messages sent to
