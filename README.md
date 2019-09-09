@@ -1,12 +1,9 @@
 ## provSummarizeR
-
-Reads the provenance created by execution of a script or from commands in the console
-and provides a human-readable summary identifying the computing environment, libraries
-used, sourced scripts (if any), and inputs and outputs. It can also optionally 
-save all the files on the provenance directory into a zip file. provSummarizeR uses 
-provenance collected by the rdt or rdtLite packages.
-
-provSummarizeR belongs to a collection of [R Tools](https://github.com/End-to-end-provenance/End-to-end-provenance.github.io/blob/master/RTools.md) developed as part of a larger project on [End-to-end-provenance](https://github.com/End-to-end-provenance/End-to-end-provenance.github.io/blob/master/README.md).
+Reads the provenance collected by rdtLite or rdt from execution of a script or commands
+in the console. Creates a human-readable summary of the provenance, including details 
+on the computing environment, loaded libraries, scripts used (if any), input and output
+files, console output, and error and warning messages. The summary is optionally saved 
+to a text file and all related provenance files are optionally packaged in a zip file.
 
 
 ## Installation
@@ -26,22 +23,21 @@ library("provSummarizeR")
 ## Usage
 The summarize functions can be used in one of three ways.
 
-1. To run script.R, collect and summarize its provenance all in one step:
+1. To sumarize the last provenance collected in the current R session:
+
+```{r}
+prov.summarize ()
+```
+
+2. To run the script <i>script.R</i>, collect provenance, and summarize 
+the provenance all in one step:
 
 ```
 prov.summarize.run ("script.R")
 ```
 
-2. To summarize the last provenance collected in the current R session:
-
-```{r}
-rdtLite::prov.run ("script.R")
-prov.summarize ()
-```
-
-3. To summarize provenance that was collected in the past and stored in a prov.json
-file.  For example, if provenance was stored in the <i>prov_script</i> directory,
-you would say:
+3. To summarize provenance that was collected in the past and stored in the file
+<i>prov.json</i> on the directory <i>prov_script</i>:
 
 ```{r}
 prov.summarize.file ("prov_script/prov.json")
@@ -49,66 +45,76 @@ prov.summarize.file ("prov_script/prov.json")
 
 All three functions have two optional parameters, <i>save</i> and <i>create.zip</i>.  
 
-If <i>save</i> is true, the summary is saved to a file, in addition to being displayed
-in the console.  The file is named <i>prov-summary.txt</i> and is stored in the provenance
-directory.  The default value of <i>save</i> is false.
+If <i>save</i> is true, the summary is saved to a text file, in addition to being displayed
+in the console.  The file is named <i>prov-summary.txt</i> and is stored in the current
+provenance directory.  The default value of <i>save</i> is false.
 
 If <i>create.zip</i> is true, the provenance directory is packaged into a timestamped zip file
 and placed in the current working directory.  This file will contain a copy of all input and
 output files and scripts used, as well as the <i>prov-summary.txt</i> if <i>save</i> is true.
-It will also include the <i>prov.json</i> file containing the detailed execution trace, as well
-as intermediate data values if snapshots were enabled when provenance was collected. The default 
+It also includes the <i>prov.json</i> file containing the detailed execution trace.  The default
 value of <i>create.zip</i> is false.
 
-Creating the zip file depends on the use of an external zip program.  This feature has been
+Creating the zip file depends on use of an external zip program.  It has been
 tested with zip for Unix/Mac OS and with 7z on Windows.  It may or may not work with
 other zip programs.  To use a program other than zip, set the R_ZIPCMD environment variable.
 
 ## Example
 
-Here is an example of what the summary looks like.  It first identifies the script that was 
-executed, along with details of how and when the script was run.  It then lists the libraries
-that were used during execution, any additional scripts sourced, and all input and output 
-files and URLs. Note that files are identified by name, timestamp, and hash value.
+Here is an example of what the summary looks like. The first line contains the name of 
+the main R script. The ENVIRONMENT section includes details describing how and when the 
+script was executed and how the provenance was collected. The LIBRARIES section lists all
+libraries that were loaded along with their version numbers. The SOURCED SCRIPTS section 
+lists any scripts that were sourced. The INPUTS section lists any input files or URLs. 
+The OUTPUTS section lists any output files. The CONSOLE section lists any output to the 
+screen. Finally the ERRORS section lists any error or warning messages that were generated 
+when the script was executed.
 
 ```
-PROVENANCE SUMMARY for script.R 
+PROVENANCE SUMMARY for basicTest.R 
 
 ENVIRONMENT:
-Executed at 2018-11-29T16.52.34EST 
-Script last modified at 2018-11-29T16.34.54EST 
-Executed with R version 3.5.1 (2018-07-02) 
-Executed on x86_64 running darwin15.6.0 
-Provenance was collected with rdtLite 1.0.2 
-Provenance is stored in /Users/blerner/Documents/scripts/prov_script 
+Executed at 2019-08-26T10.08.19EDT 
+Total execution time is 6.3 seconds
+Script last modified at 2019-01-02T12.43.34EST 
+Executed with R version 3.6.1 (2019-07-05) 
+Executed on x86_64 running mingw32 
+Provenance was collected with rdtLite 1.1.1 
+Provenance is stored in C:/Prov/prov_basicTest 
 Hash algorithm is md5 
 
 LIBRARIES:
-base 3.5.1
-datasets 3.5.1
-ggplot2 3.0.0
-graphics 3.5.1
-grDevices 3.5.1
-methods 3.5.1
-provSummarizeR 1.0
-rdtLite 1.0.2
-stats 3.5.1
-utils 3.5.1
+base 3.6.1
+datasets 3.6.1
+ggplot2 3.2.1
+graphics 3.6.1
+grDevices 3.6.1
+methods 3.6.1
+rdtLite 1.1.1
+stats 3.6.1
+utils 3.6.1
 
 SOURCED SCRIPTS:
 None
 
 INPUTS: 
-File : in.txt 
-   2018-11-29T16.52.35EST 
-   52dbff5d488efed73caf540c9476aa01 
-File : script2.R 
-   2018-11-29T16.52.35EST 
-   422b85c26655e3192dece05303b58c11 
+URL : http://harvardforest.fas.harvard.edu/data/p00/hf000/hf000-01-daily-m.csv 
+   2019-08-26 10:08:26 
+   76551e9b09d96eb70bba9ae7a16aab9a 
 
 OUTPUTS: 
-File : out.txt 
-   2018-11-29T16.52.35EST 
-   a4a33d050511356b2108669380684498 
+File : shortdata.csv 
+   2019-08-26 10:08:27 
+   58725476ca78c8feb08ad15602d8a006 
+File : airt-vs-prec.pdf 
+   2019-08-26 10:08:27 
+   ea5167eff2c4e26d0525a8cb50ad8bb9 
+
+CONSOLE:
+None
+
+ERRORS:
+In basicTest.R on line  66 :
+   Error in file(file, "rt"): cannot open the connection
 ```
 

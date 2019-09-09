@@ -1,7 +1,7 @@
 Package: provSummarizeR
 Title: Summarizes Provenance Related to Inputs and Outputs of a Script or Console Commands
-Version: 1.1
-Date: 2019-06-18
+Version: 1.2
+Date: 2019-09-09
 Authors@R: c( person("Barbara", "Lerner", role = "cre",
                       email = "blerner@mtholyoke.edu"),
               person("Emery", "Boose", role = "aut",
@@ -27,7 +27,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: 
     dplyr,
-    provParseR (>= 0.1.2)
+    provParseR (>= 0.2)
 Suggests:
     rdtLite,
     rdt,
