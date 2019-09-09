@@ -34,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.802",
+			"rdt:elapsedTime": "0.799",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -44,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "library(utils)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.128",
+			"rdt:elapsedTime": "0.129",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -54,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "input <- readLines (\"in.txt\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.106",
+			"rdt:elapsedTime": "0.102",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -64,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "print (\"foo\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.11",
+			"rdt:elapsedTime": "0.114",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -74,7 +74,7 @@
 		"rdt:p5": {
 			"rdt:name": "print (input)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.071",
+			"rdt:elapsedTime": "0.074",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 5,
 			"rdt:startCol": 1,
@@ -84,7 +84,7 @@
 		"rdt:p6": {
 			"rdt:name": "source (\"script2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.128",
+			"rdt:elapsedTime": "0.135",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 7,
 			"rdt:startCol": 1,
@@ -94,7 +94,7 @@
 		"rdt:p7": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.005",
+			"rdt:elapsedTime": "0.006",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -112,7 +112,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "732d814761d044c919425662375691de",
-			"rdt:timestamp": "2019-09-09T11.09.29EDT",
+			"rdt:timestamp": "2019-09-09T11.23.13EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/in.txt"
 		},
 		"rdt:d2": {
@@ -123,7 +123,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-09-09T11.09.29EDT",
+			"rdt:timestamp": "2019-09-09T11.23.13EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -145,7 +145,7 @@
 			"rdt:scope": "Standard output",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-09-09T11.09.30EDT",
+			"rdt:timestamp": "2019-09-09T11.23.13EDT",
 			"rdt:location": ""
 		},
 		"rdt:d5": {
@@ -156,7 +156,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "732d814761d044c919425662375691de",
-			"rdt:timestamp": "2019-09-09T11.09.30EDT",
+			"rdt:timestamp": "2019-09-09T11.23.13EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/out.txt"
 		},
 
@@ -168,12 +168,12 @@
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov.R",
 			"rdt:scriptTimeStamp": "2019-08-27T14.42.47EDT",
-			"rdt:totalElapsedTime": "1.35",
+			"rdt:totalElapsedTime": "1.359",
 			"rdt:sourcedScripts": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/script2.r",
 			"rdt:sourcedScriptTimeStamps": "2019-08-12T16.53.18EDT",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov",
-			"rdt:provTimestamp": "2019-09-09T11.09.28EDT",
+			"rdt:provTimestamp": "2019-09-09T11.23.12EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

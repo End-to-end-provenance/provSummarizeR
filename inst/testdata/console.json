@@ -34,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "console.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.88",
+			"rdt:elapsedTime": "0.792",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -44,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "a <- 1",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.139",
+			"rdt:elapsedTime": "0.129",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 2,
 			"rdt:startCol": 1,
@@ -54,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "input <- readLines (\"Console.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.113",
+			"rdt:elapsedTime": "0.101",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -64,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "sort (input)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.107",
+			"rdt:elapsedTime": "0.106",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -103,7 +103,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "3bd3b7810625fb421d2ecbaa4d569520",
-			"rdt:timestamp": "2019-09-09T11.08.35EDT",
+			"rdt:timestamp": "2019-09-09T11.22.58EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R"
 		},
 		"rdt:d3": {
@@ -114,7 +114,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-09-09T11.08.35EDT",
+			"rdt:timestamp": "2019-09-09T11.22.58EDT",
 			"rdt:location": ""
 		},
 
@@ -126,12 +126,12 @@
 			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R",
 			"rdt:scriptTimeStamp": "2019-08-12T16.53.18EDT",
-			"rdt:totalElapsedTime": "1.243",
+			"rdt:totalElapsedTime": "1.132",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_console",
-			"rdt:provTimestamp": "2019-09-09T11.08.34EDT",
+			"rdt:provTimestamp": "2019-09-09T11.22.57EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

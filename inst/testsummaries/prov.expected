@@ -1,8 +1,8 @@
 PROVENANCE SUMMARY for prov.R 
 
 ENVIRONMENT:
-Executed at 2019-09-09T10.46.27EDT 
-Total execution time is 1.351 seconds
+Executed at 2019-09-09T11.23.12EDT 
+Total execution time is 1.359 seconds
 Script last modified at 2019-08-27T14.42.47EDT 
 Executed with R version 3.6.0 (2019-04-26) 
 Executed on x86_64 running darwin15.6.0 
@@ -26,12 +26,12 @@ SOURCED SCRIPTS:
 
 INPUTS: 
 File : in.txt 
-   2019-09-09T10.46.28EDT 
+   2019-09-09T11.23.13EDT 
    732d814761d044c919425662375691de 
 
 OUTPUTS: 
 File : out.txt 
-   2019-09-09T10.46.29EDT 
+   2019-09-09T11.23.13EDT 
    732d814761d044c919425662375691de 
 
 CONSOLE:
