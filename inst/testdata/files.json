@@ -8,7 +8,25 @@
 		"rdt:a1": {
 			"rdt:tool.name": "rdtLite",
 			"rdt:tool.version": "1.1.1",
-			"rdt:json.version": "2.2"
+			"rdt:json.version": "2.3",
+			"rdt:args.names": [
+				"overwrite",
+				"details",
+				"snapshot.size",
+				"save.debug"
+			],
+			"rdt:args.values": [
+				"TRUE",
+				"TRUE",
+				"10",
+				"FALSE"
+			],
+			"rdt:args.types": [
+				"logical",
+				"logical",
+				"numeric",
+				"logical"
+			]
 		}
 	},
 
@@ -16,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "files.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.96",
+			"rdt:elapsedTime": "0.815",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -26,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "text <- readLines(\"warnings.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.11",
+			"rdt:elapsedTime": "0.136",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -36,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "webpage <- readLines (\"https://harvardforest.fas.harvard.edu",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.37",
+			"rdt:elapsedTime": "0.168",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -46,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "writeLines (text, tempfile())",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.32",
+			"rdt:elapsedTime": "0.242",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 6,
 			"rdt:startCol": 1,
@@ -56,7 +74,7 @@
 		"rdt:p5": {
 			"rdt:name": "files.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.02",
+			"rdt:elapsedTime": "0.007",
 			"rdt:scriptNum": "NA",
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -73,9 +91,9 @@
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "899e9c9716660a967355bd5dac1a4ff0",
-			"rdt:timestamp": "2019-08-24T09.35.22EDT",
-			"rdt:location": "C:/GitHub/provSummarizeR/inst/testscripts/warnings.r"
+			"rdt:hash": "3c87e73e0d9a01fa6b330e2b11ad0da1",
+			"rdt:timestamp": "2019-09-09T11.09.18EDT",
+			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/warnings.r"
 		},
 		"rdt:d2": {
 			"rdt:name": "text",
@@ -85,7 +103,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-08-24T09.35.22EDT",
+			"rdt:timestamp": "2019-09-09T11.09.18EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -95,53 +113,53 @@
 			"rdt:type": "URL",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:hash": "034d1c67b8f07d142335a67a94925641",
-			"rdt:timestamp": "2019-08-24T09.35.26EDT",
+			"rdt:hash": "2e13fe17245ebbb5d5679ab0da5f5f69",
+			"rdt:timestamp": "2019-09-09T11.09.21EDT",
 			"rdt:location": ""
 		},
 		"rdt:d4": {
 			"rdt:name": "webpage",
 			"rdt:value": "data/4-webpage-PARTIAL.txt",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1062], \"type\":[\"character\"]}",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1063], \"type\":[\"character\"]}",
 			"rdt:type": "Snapshot",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2019-08-24T09.35.27EDT",
+			"rdt:timestamp": "2019-09-09T11.09.22EDT",
 			"rdt:location": ""
 		},
 		"rdt:d5": {
-			"rdt:name": "file3dd430f5266",
-			"rdt:value": "data/5-file3dd430f5266",
+			"rdt:name": "filefc75757083bf",
+			"rdt:value": "data/5-filefc75757083bf",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "899e9c9716660a967355bd5dac1a4ff0",
-			"rdt:timestamp": "2019-08-24T09.35.27EDT",
-			"rdt:location": "C:/Users/boose/AppData/Local/Temp/RtmpcV2DAZ/file3dd430f5266"
+			"rdt:hash": "3c87e73e0d9a01fa6b330e2b11ad0da1",
+			"rdt:timestamp": "2019-09-09T11.09.22EDT",
+			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/RtmpjSahDZ/filefc75757083bf"
 		},
 
 		"rdt:environment": {
 			"rdt:name": "environment",
 			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "mingw32",
+			"rdt:operatingSystem": "darwin15.6.0",
 			"rdt:language": "R",
-			"rdt:langVersion": "R version 3.6.1 (2019-07-05)",
-			"rdt:script": "C:/GitHub/provSummarizeR/inst/testscripts/files.R",
-			"rdt:scriptTimeStamp": "2019-08-22T17.17.24EDT",
-			"rdt:totalElapsedTime": "1.78",
+			"rdt:langVersion": "R version 3.6.0 (2019-04-26)",
+			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/files.R",
+			"rdt:scriptTimeStamp": "2019-08-12T16.53.18EDT",
+			"rdt:totalElapsedTime": "1.368",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
-			"rdt:workingDirectory": "C:/github/provSummarizeR/inst/testscripts",
-			"rdt:provDirectory": "C:/github/provSummarizeR/inst/testscripts/prov_files",
-			"rdt:provTimestamp": "2019-08-24T09.35.21EDT",
+			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
+			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_files",
+			"rdt:provTimestamp": "2019-09-09T11.09.17EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
 		"rdt:l1": {
 			"name": "base",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -149,7 +167,7 @@
 		},
 		"rdt:l2": {
 			"name": "datasets",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -157,7 +175,7 @@
 		},
 		"rdt:l3": {
 			"name": "ggplot2",
-			"version": "3.2.1",
+			"version": "3.1.1",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -165,7 +183,7 @@
 		},
 		"rdt:l4": {
 			"name": "graphics",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -173,7 +191,7 @@
 		},
 		"rdt:l5": {
 			"name": "grDevices",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -181,7 +199,7 @@
 		},
 		"rdt:l6": {
 			"name": "methods",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -189,7 +207,7 @@
 		},
 		"rdt:l7": {
 			"name": "stats",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -197,7 +215,7 @@
 		},
 		"rdt:l8": {
 			"name": "utils",
-			"version": "3.6.1",
+			"version": "3.6.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
