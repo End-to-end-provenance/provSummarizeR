@@ -1,3 +1,7 @@
+# provSummarizeR 1.2
+
+* Messages to the console are included in the summary
+
 # provSummarizeR 1.1
 
 * Added total execution time to the summary
