@@ -7,3 +7,10 @@
 * Added total execution time to the summary
 * Updated for provParseR 0.1.2
 * Enhanced testing
+
+# provSummarizeR 1.2
+
+* Messages to the console are included in the summary
+
+# provSummarizeR 1.3
+* Added file & url information for console sessions

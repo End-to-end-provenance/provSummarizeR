@@ -49,12 +49,12 @@ For provenance collected from executing a script file, the summary identifies:
   \item The names of any scripts sourced
   \item The names of files input or output, the file timestamp, and its hashvalue
   \item Any URLs loaded and the time loaded
-  \item Any errors or warnings along with the line on which they occurred, if known.
   \item Any messages sent to standard output along with the line on which they occurred, if known.
+  \item Any errors or warnings along with the line on which they occurred, if known.
 }
 
-For provenance collected from a console session, only the environment and library information
-appears in the summary.
+For provenance collected from a console session, only the environment, library, file, and URL
+information appears in the summary.
 
 Creating a zip file depends on a zip executable being on the search path.
 By default, it looks for a program named zip.  To use a program with 
