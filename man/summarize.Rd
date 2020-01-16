@@ -47,7 +47,8 @@ For provenance collected from executing a script file, the summary identifies:
      location of the provenance file, and the hash algorithm used to hash data files.
   \item A list of libraries loaded and their versions
   \item The names of any scripts sourced
-  \item The names of any variables in the global environment that are used but not set by the script
+  \item The names of any variables in the global environment that are used but not set by a script
+     or a console session
   \item The names of files input or output, the file timestamp, and its hashvalue
   \item Any URLs loaded and the time loaded
   \item Any messages sent to standard output along with the line on which they occurred, if known.
