@@ -1,44 +1,47 @@
 PROVENANCE SUMMARY for prov.R 
 
 ENVIRONMENT:
-Executed at 2019-09-09T11.23.12EDT 
-Total execution time is 1.359 seconds
-Script last modified at 2019-08-27T14.42.47EDT 
-Executed with R version 3.6.0 (2019-04-26) 
-Executed on x86_64 running darwin15.6.0 
-Provenance was collected with rdtLite 1.1.1 
-Provenance is stored in /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov 
+Executed at 2020-01-16T12.34.15EST 
+Total execution time is 1.5 seconds
+Script last modified at 2019-12-05T11.55.19EST 
+Executed with R version 3.6.1 (2019-07-05) 
+Executed on x86_64 running mingw32 
+Provenance was collected with rdtLite 1.2.1 
+Provenance is stored in C:/github/provSummarizeR/inst/testscripts/prov_prov 
 Hash algorithm is md5 
 
 LIBRARIES:
-base 3.6.0
-datasets 3.6.0
-ggplot2 3.1.1
-graphics 3.6.0
-grDevices 3.6.0
-methods 3.6.0
-stats 3.6.0
-utils 3.6.0
+base 3.6.1
+datasets 3.6.1
+ggplot2 3.2.1
+graphics 3.6.1
+grDevices 3.6.1
+methods 3.6.1
+stats 3.6.1
+utils 3.6.1
 
 SOURCED SCRIPTS:
-/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/script2.r 
-   2019-08-12T16.53.18EDT 
+C:/GitHub/provSummarizeR/inst/testscripts/script2.r 
+   2019-12-05T11.55.19EST 
+
+PRE-EXISTING:
+None
 
 INPUTS: 
 File : in.txt 
-   2019-09-09T11.23.13EDT 
-   732d814761d044c919425662375691de 
+   2020-01-16T12.34.16EST 
+   07effd7992ea26fbd9bd23deffb1d9d7 
 
 OUTPUTS: 
 File : out.txt 
-   2019-09-09T11.23.13EDT 
-   732d814761d044c919425662375691de 
+   2020-01-16T12.34.17EST 
+   07effd7992ea26fbd9bd23deffb1d9d7 
 
 CONSOLE:
 In prov.R on line  4 :
    "foo" 
 In prov.R on line  5 :
-   /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov/data/4-output.txt 
+   C:/github/provSummarizeR/inst/testscripts/prov_prov/data/4-output.txt 
 
 ERRORS:
 None
