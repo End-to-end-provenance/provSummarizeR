@@ -65,10 +65,11 @@ Here is an example of what the summary looks like. The first line contains the n
 the main R script. The ENVIRONMENT section includes details describing how and when the 
 script was executed and how the provenance was collected. The LIBRARIES section lists all
 libraries that were loaded along with their version numbers. The SOURCED SCRIPTS section 
-lists any scripts that were sourced. The INPUTS section lists any input files or URLs. 
-The OUTPUTS section lists any output files. The CONSOLE section lists any output to the 
-screen. Finally the ERRORS section lists any error or warning messages that were generated 
-when the script was executed.
+lists any scripts that were sourced. The PRE-EXISTING section lists any variables in the 
+global environment that were used but not set by the script or console session. The INPUTS 
+section lists any input files or URLs. The OUTPUTS section lists any output files. The 
+CONSOLE section lists any output to the screen. Finally the ERRORS section lists any error 
+or warning messages that were generated when the script was executed.
 
 ```
 PROVENANCE SUMMARY for basicTest.R 
@@ -95,6 +96,9 @@ stats 3.6.1
 utils 3.6.1
 
 SOURCED SCRIPTS:
+None
+
+PRE-EXISTING:
 None
 
 INPUTS: 
