@@ -10,6 +10,7 @@ expect_known_output(prov.summarize.file(test.data, save = FALSE, create.zip = FA
 test.script <- system.file("testscripts", "warnings.r", package = "provSummarizeR", mustWork=TRUE)
 test.expected <- system.file("testsummaries", "warnings.expected", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
+cat(summary)
 expected.summary <- readLines (test.expected)
 expect_equal(length(summary), length(expected.summary))
 expect_equal(summary[1:4], expected.summary[1:4])

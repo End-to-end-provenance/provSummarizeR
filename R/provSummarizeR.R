@@ -82,6 +82,8 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
 #' prov.summarize.file (testdata)
 #' @rdname summarize
 prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
+  # FOR TESTING
+  print("Version from 5/18 at 10:58 am")
   if (!file.exists(prov.file)) {
     cat("Provenance file not found.\n")
     return()
@@ -340,7 +342,7 @@ generate.file.summary <- function (direction, files, prov) {
     
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
-      cat(file.info[i, "name"], "\n")
+      cat(file.info[i, "location"], "\n")
       if (is.na (file.info[i, "filetime"])) {
         if (file.info[i, "timestamp"] != "") {
           cat("  ", file.info[i, "timestamp"], "\n")

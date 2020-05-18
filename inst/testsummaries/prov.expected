@@ -28,12 +28,12 @@ PRE-EXISTING:
 None
 
 INPUTS: 
-File : in.txt 
+File : C:/GitHub/provSummarizeR/inst/testscripts/in.txt 
    2020-01-16T12.34.16EST 
    07effd7992ea26fbd9bd23deffb1d9d7 
 
 OUTPUTS: 
-File : out.txt 
+File : C:/GitHub/provSummarizeR/inst/testscripts/out.txt 
    2020-01-16T12.34.17EST 
    07effd7992ea26fbd9bd23deffb1d9d7 
 
