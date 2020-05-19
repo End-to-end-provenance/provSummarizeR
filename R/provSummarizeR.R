@@ -209,7 +209,7 @@ generate.summaries <- function(prov, environment) {
     generate.script.summary (provParseR::get.scripts(prov))
   }
   
-  #generate.preexisting.summary(provParseR::get.preexisting(prov))
+  generate.preexisting.summary(provParseR::get.preexisting(prov))
   
   generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
   generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
