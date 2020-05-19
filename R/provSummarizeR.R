@@ -82,8 +82,6 @@ prov.summarize <- function (save=FALSE, create.zip=FALSE) {
 #' prov.summarize.file (testdata)
 #' @rdname summarize
 prov.summarize.file <- function (prov.file, save=FALSE, create.zip=FALSE) {
-  # FOR TESTING
-  print("Version from 5/18 at 10:58 am")
   if (!file.exists(prov.file)) {
     cat("Provenance file not found.\n")
     return()
@@ -211,7 +209,7 @@ generate.summaries <- function(prov, environment) {
     generate.script.summary (provParseR::get.scripts(prov))
   }
   
-  generate.preexisting.summary(provParseR::get.preexisting(prov))
+  #generate.preexisting.summary(provParseR::get.preexisting(prov))
   
   generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
   generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
