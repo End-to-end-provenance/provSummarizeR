@@ -340,7 +340,12 @@ generate.file.summary <- function (direction, files, prov) {
     
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
-      cat(file.info[i, "location"], "\n")
+      if (file.info[i, "type"] == "File") {
+        cat(file.info[i, "location"], "\n")
+      }
+      else {
+        cat(file.info[i, "name"], "\n")
+      }
       if (is.na (file.info[i, "filetime"])) {
         if (file.info[i, "timestamp"] != "") {
           cat("  ", file.info[i, "timestamp"], "\n")
