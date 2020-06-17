@@ -1,40 +1,43 @@
 PROVENANCE SUMMARY for files.R 
 
 ENVIRONMENT:
-Executed at 2019-09-09T11.23.05EDT 
-Total execution time is 1.32 seconds
-Script last modified at 2019-08-12T16.53.18EDT 
-Executed with R version 3.6.0 (2019-04-26) 
-Executed on x86_64 running darwin15.6.0 
-Provenance was collected with rdtLite 1.1.1 
-Provenance is stored in /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_files 
+Executed at 2020-01-16T12.34.06EST 
+Total execution time is 1.73 seconds
+Script last modified at 2019-12-05T11.55.19EST 
+Executed with R version 3.6.1 (2019-07-05) 
+Executed on x86_64 running mingw32 
+Provenance was collected with rdtLite 1.2.1 
+Provenance is stored in C:/github/provSummarizeR/inst/testscripts/prov_files 
 Hash algorithm is md5 
 
 LIBRARIES:
-base 3.6.0
-datasets 3.6.0
-ggplot2 3.1.1
-graphics 3.6.0
-grDevices 3.6.0
-methods 3.6.0
-stats 3.6.0
-utils 3.6.0
+base 3.6.1
+datasets 3.6.1
+ggplot2 3.2.1
+graphics 3.6.1
+grDevices 3.6.1
+methods 3.6.1
+stats 3.6.1
+utils 3.6.1
 
 SOURCED SCRIPTS:
 None
 
+PRE-EXISTING:
+None
+
 INPUTS: 
-File : warnings.R 
-   2019-09-09T11.23.06EDT 
-   3c87e73e0d9a01fa6b330e2b11ad0da1 
+File : C:/GitHub/provSummarizeR/inst/testscripts/warnings.r 
+   2020-01-16T12.34.07EST 
+   899e9c9716660a967355bd5dac1a4ff0 
 URL : https://harvardforest.fas.harvard.edu/ 
-   2019-09-09T11.23.09EDT 
-   888fc5c3674085e66f6e312a03675005 
+   2020-01-16T12.34.12EST 
+   ec8cd7eeeaf02747791b70b50ff46857 
 
 OUTPUTS: 
-File : file109e24e14da59 
-   2019-09-09T11.23.10EDT 
-   3c87e73e0d9a01fa6b330e2b11ad0da1 
+File : C:/Users/boose/AppData/Local/Temp/Rtmpao1SEA/file15f85f41392 
+   2020-01-16T12.34.12EST 
+   899e9c9716660a967355bd5dac1a4ff0 
 
 CONSOLE:
 None

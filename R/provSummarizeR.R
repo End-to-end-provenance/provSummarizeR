@@ -32,14 +32,16 @@
 #'      location of the provenance file, and the hash algorithm used to hash data files.
 #'   \item A list of libraries loaded and their versions
 #'   \item The names of any scripts sourced
+#'   \item The names of any variables in the global environment that are used but not set by a script
+#'      or a console session
 #'   \item The names of files input or output, the file timestamp, and its hashvalue
 #'   \item Any URLs loaded and the time loaded
 #'   \item Any messages sent to standard output along with the line on which they occurred, if known.
 #'   \item Any errors or warnings along with the line on which they occurred, if known.
 #' }
 #' 
-#' For provenance collected from a console session, only the environment, library, file, and URL
-#' information appears in the summary.
+#' For provenance collected from a console session, only the environment, library, pre-existing
+#' variables, file, and URL information appears in the summary.
 #' 
 #' Creating a zip file depends on a zip executable being on the search path.
 #' By default, it looks for a program named zip.  To use a program with 
@@ -207,6 +209,8 @@ generate.summaries <- function(prov, environment) {
     generate.script.summary (provParseR::get.scripts(prov))
   }
   
+  generate.preexisting.summary(provParseR::get.preexisting(prov))
+  
   generate.file.summary ("INPUTS:", provParseR::get.input.files(prov), prov)
   generate.file.summary ("OUTPUTS:", provParseR::get.output.files(prov), prov)
 
@@ -275,6 +279,23 @@ generate.script.summary <- function (scripts) {
   cat ("\n")
 }
 
+#' generate.preexisting.summary lists variables in the global environment that are used but not set by
+#' a script or a console session.
+#' @param vars a data frame of preexisting variables
+#' @noRd
+
+generate.preexisting.summary <- function(vars) {
+  cat (paste ("PRE-EXISTING:\n"))
+  if (is.null(vars) || nrow(vars) == 0) {
+    cat("None\n")
+  } else {
+    for (i in 1:nrow(vars)) {
+      cat(vars[i, "name"], "\n")
+    }
+  }
+  cat("\n")
+}
+
 #' generate.file.summary creates the text summary of files read or written by the script, writing it to the
 #' current output sink(s)
 #' @param direction the heading to proceed the file list, intended to identify them as input or output files
@@ -319,7 +340,12 @@ generate.file.summary <- function (direction, files, prov) {
     
     for (i in 1:nrow(file.info)) {
       cat(file.info[i, "type"], ": ")
-      cat(file.info[i, "name"], "\n")
+      if (file.info[i, "type"] == "File") {
+        cat(file.info[i, "location"], "\n")
+      }
+      else {
+        cat(file.info[i, "name"], "\n")
+      }
       if (is.na (file.info[i, "filetime"])) {
         if (file.info[i, "timestamp"] != "") {
           cat("  ", file.info[i, "timestamp"], "\n")
