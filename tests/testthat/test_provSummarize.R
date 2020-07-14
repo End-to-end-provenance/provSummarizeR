@@ -11,14 +11,13 @@ test.script <- system.file("testscripts", "warnings.r", package = "provSummarize
 test.expected <- system.file("testsummaries", "warnings.expected", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
 expected.summary <- readLines (test.expected)
-print("Expected")
-print (expected.summary[15:25])
-print ("Actual")
-print (summary[15:25])
 expect_equal(length(summary), length(expected.summary))
 expect_equal(summary[1:4], expected.summary[1:4])
 expect_equal(summary[12:14], expected.summary[12:14])
-expect_equal(summary[26:46], expected.summary[26:46])
+start.line <- match ("SOURCED SCRIPTS:", summary)
+expected.start.line <- match ("SOURCED SCRIPTS:", expected.summary)
+expect_equal(summary[start.line:(start.line+20)], 
+             expected.summary[expected.start.line:(expected.start.line+20)])
 # Can't test this like the others because some of the fields will change when it is run,
 # like execution time.
 # expect_known_output(prov.summarize.run(test.script), test.expected, update = FALSE)
