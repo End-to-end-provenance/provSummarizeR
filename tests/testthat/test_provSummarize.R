@@ -11,7 +11,6 @@ test.script <- system.file("testscripts", "warnings.r", package = "provSummarize
 test.expected <- system.file("testsummaries", "warnings.expected", package = "provSummarizeR", mustWork=TRUE)
 summary <- capture.output (prov.summarize.run(test.script))
 expected.summary <- readLines (test.expected)
-expect_equal(length(summary), length(expected.summary))
 expect_equal(summary[1:4], expected.summary[1:4])
 expect_equal(summary[12:14], expected.summary[12:14])
 start.line <- match ("SOURCED SCRIPTS:", summary)
