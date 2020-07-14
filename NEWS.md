@@ -1,3 +1,9 @@
+# provSummarizeR 1.4.1
+
+* Updated tests to reflect a change in rdtLite that affects the list of libraries.
+  Specifically, ggplot2 will not be listed unless the script being summarized
+  uses ggplot2.
+
 # provSummarizeR 1.4
 
 * The summary now reports pre-exiting variables.  These are variables that
