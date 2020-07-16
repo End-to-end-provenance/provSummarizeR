@@ -1,3 +1,7 @@
+# provSummarizeR 1.4.2
+
+* Updated version number for win-builder.  There are no code changes.
+
 # provSummarizeR 1.4.1
 
 * Updated tests to reflect a change in rdtLite that affects the list of libraries.
