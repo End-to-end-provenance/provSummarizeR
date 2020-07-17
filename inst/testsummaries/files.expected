@@ -1,8 +1,8 @@
 PROVENANCE SUMMARY for files.R 
 
 ENVIRONMENT:
-Executed at 2020-07-15T16.57.17EDT 
-Total execution time is 1.521 seconds
+Executed at 2020-07-17T14.34.04EDT 
+Total execution time is 1.429 seconds
 Script last modified at 2019-08-12T16.53.18EDT 
 Executed with R version 4.0.0 (2020-04-24) 
 Executed on x86_64-apple-darwin17.0 (64-bit) running macOS Catalina 10.15.5 
@@ -31,12 +31,12 @@ File : /Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/
    2019-08-12T16.53.18EDT 
    3c87e73e0d9a01fa6b330e2b11ad0da1 
 URL : https://harvardforest.fas.harvard.edu/ 
-   2020-07-15T16.57.18EDT 
-   0f705c5b9d66890abd8e8a9010ab6987 
+   2020-07-17T14.34.06EDT 
+   aa38261037179175dfcea164002fe017 
 
 OUTPUTS: 
-File : /private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/Rtmp2J7dUP/file41821526f3ef 
-   2020-07-15T16.57.19EDT 
+File : /private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/RtmpZdkdfu/file6c9f8623178 
+   2020-07-17T14.34.06EDT 
    3c87e73e0d9a01fa6b330e2b11ad0da1 
 
 CONSOLE:

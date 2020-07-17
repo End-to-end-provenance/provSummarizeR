@@ -34,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "files.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.962",
+			"rdt:elapsedTime": "0.911",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -44,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "text <- readLines(\"warnings.R\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.15",
+			"rdt:elapsedTime": "0.135",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -54,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "webpage <- readLines (\"https://harvardforest.fas.harvard.edu",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.154",
+			"rdt:elapsedTime": "0.144",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -64,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "writeLines (text, tempfile())",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.246",
+			"rdt:elapsedTime": "0.231",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 6,
 			"rdt:startCol": 1,
@@ -74,7 +74,7 @@
 		"rdt:p5": {
 			"rdt:name": "files.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.009",
+			"rdt:elapsedTime": "0.008",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -103,7 +103,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-07-15T16.57.18EDT",
+			"rdt:timestamp": "2020-07-17T14.34.05EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -113,8 +113,8 @@
 			"rdt:type": "URL",
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
-			"rdt:hash": "0f705c5b9d66890abd8e8a9010ab6987",
-			"rdt:timestamp": "2020-07-15T16.57.18EDT",
+			"rdt:hash": "aa38261037179175dfcea164002fe017",
+			"rdt:timestamp": "2020-07-17T14.34.06EDT",
 			"rdt:location": ""
 		},
 		"rdt:d4": {
@@ -125,19 +125,19 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-07-15T16.57.19EDT",
+			"rdt:timestamp": "2020-07-17T14.34.06EDT",
 			"rdt:location": ""
 		},
 		"rdt:d5": {
-			"rdt:name": "file41821526f3ef",
-			"rdt:value": "data/5-file41821526f3ef",
+			"rdt:name": "file6c9f8623178",
+			"rdt:value": "data/5-file6c9f8623178",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "3c87e73e0d9a01fa6b330e2b11ad0da1",
-			"rdt:timestamp": "2020-07-15T16.57.19EDT",
-			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/Rtmp2J7dUP/file41821526f3ef"
+			"rdt:timestamp": "2020-07-17T14.34.06EDT",
+			"rdt:location": "/private/var/folders/66/3lfdj29j1wb48v_s298qtbwm0000gn/T/RtmpZdkdfu/file6c9f8623178"
 		},
 
 		"rdt:environment": {
@@ -149,13 +149,13 @@
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/files.R",
 			"rdt:scriptTimeStamp": "2019-08-12T16.53.18EDT",
 			"rdt:scriptHash": "27e5d47d382cde2b681dae166b7bee1d",
-			"rdt:totalElapsedTime": "1.521",
+			"rdt:totalElapsedTime": "1.429",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:sourcedScriptHashes": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_files",
-			"rdt:provTimestamp": "2020-07-15T16.57.17EDT",
+			"rdt:provTimestamp": "2020-07-17T14.34.04EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 

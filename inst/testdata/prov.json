@@ -34,7 +34,7 @@
 		"rdt:p1": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.963",
+			"rdt:elapsedTime": "0.904",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -44,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "library(utils)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.143",
+			"rdt:elapsedTime": "0.136",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -54,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "input <- readLines (\"in.txt\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.112",
+			"rdt:elapsedTime": "0.109",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -64,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "print (\"foo\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.089",
+			"rdt:elapsedTime": "0.088",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -74,7 +74,7 @@
 		"rdt:p5": {
 			"rdt:name": "print (input)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.076",
+			"rdt:elapsedTime": "0.071",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 5,
 			"rdt:startCol": 1,
@@ -84,7 +84,7 @@
 		"rdt:p6": {
 			"rdt:name": "source (\"script2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.136",
+			"rdt:elapsedTime": "0.133",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 7,
 			"rdt:startCol": 1,
@@ -123,7 +123,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-07-15T16.57.24EDT",
+			"rdt:timestamp": "2020-07-17T14.34.11EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -145,7 +145,7 @@
 			"rdt:scope": "Standard output",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-07-15T16.57.24EDT",
+			"rdt:timestamp": "2020-07-17T14.34.11EDT",
 			"rdt:location": ""
 		},
 		"rdt:d5": {
@@ -156,7 +156,7 @@
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
 			"rdt:hash": "732d814761d044c919425662375691de",
-			"rdt:timestamp": "2020-07-15T16.57.24EDT",
+			"rdt:timestamp": "2020-07-17T14.34.12EDT",
 			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/out.txt"
 		},
 
@@ -169,13 +169,13 @@
 			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov.R",
 			"rdt:scriptTimeStamp": "2019-12-06T14.11.01EST",
 			"rdt:scriptHash": "a102198bc1aff4be5a493ec494659500",
-			"rdt:totalElapsedTime": "1.524",
+			"rdt:totalElapsedTime": "1.446",
 			"rdt:sourcedScripts": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/script2.r",
 			"rdt:sourcedScriptTimeStamps": "2019-08-12T16.53.18EDT",
 			"rdt:sourcedScriptHashes": "0b2c8d4e6ad7245d03b6c3361a710eee",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
 			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov",
-			"rdt:provTimestamp": "2020-07-15T16.57.23EDT",
+			"rdt:provTimestamp": "2020-07-17T14.34.10EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
