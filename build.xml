@@ -36,9 +36,8 @@
     </target>
     
 	<target name="create-json">
-		<!-- Note that script2.r and warnings.r do not need to be here.  script2.r is sourced by
-		     another script but never run independently. warnings.r is tested with prov.summarize.run
-		     so we do not want precomputed provenance. -->
+		<!-- Note that script2.r does not need to be here.  script2.r is sourced by
+		     another script but never run independently. -->
 		<antcall target="create-one-json">
 			<param name="script" value="console"/>
 		</antcall>
@@ -48,9 +47,9 @@
 		<antcall target="create-one-json">
 			<param name="script" value="prov"/>
 		</antcall>
-		<!--<antcall target="create-one-json">
+		<antcall target="create-one-json">
 			<param name="script" value="warnings"/>
-		</antcall>-->
+		</antcall>
 	</target>
 	
 	<target name="create-one-json">

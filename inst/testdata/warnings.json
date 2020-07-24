@@ -32,9 +32,9 @@
 
 	"activity" : {
 		"rdt:p1": {
-			"rdt:name": "console.R",
+			"rdt:name": "warnings.r",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.906",
+			"rdt:elapsedTime": "0.913",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -42,39 +42,39 @@
 			"rdt:endCol": "NA"
 		},
 		"rdt:p2": {
-			"rdt:name": "a <- 1",
+			"rdt:name": "warning (\"Warning 1\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.13",
+			"rdt:elapsedTime": "0.132",
 			"rdt:scriptNum": 1,
-			"rdt:startLine": 2,
+			"rdt:startLine": 1,
 			"rdt:startCol": 1,
-			"rdt:endLine": 2,
-			"rdt:endCol": 6
+			"rdt:endLine": 1,
+			"rdt:endCol": 21
 		},
 		"rdt:p3": {
-			"rdt:name": "input <- readLines (\"Console.R\")",
+			"rdt:name": "if (1 == 1) {\n  warning (\"Multi-line warning\")\n}",
 			"rdt:type": "Operation",
 			"rdt:elapsedTime": "0.113",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
-			"rdt:endLine": 3,
-			"rdt:endCol": 32
+			"rdt:endLine": 5,
+			"rdt:endCol": 1
 		},
 		"rdt:p4": {
-			"rdt:name": "sort (input)",
+			"rdt:name": "x <- foo",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.082",
+			"rdt:elapsedTime": "0.008",
 			"rdt:scriptNum": 1,
-			"rdt:startLine": 4,
+			"rdt:startLine": 7,
 			"rdt:startCol": 1,
-			"rdt:endLine": 4,
-			"rdt:endCol": 12
+			"rdt:endLine": 7,
+			"rdt:endCol": 8
 		},
 		"rdt:p5": {
-			"rdt:name": "console.R",
+			"rdt:name": "warnings.r",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.004",
+			"rdt:elapsedTime": "0.07",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
@@ -85,36 +85,36 @@
 
 	"entity" : {
 		"rdt:d1": {
-			"rdt:name": "a",
-			"rdt:value": "1",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"numeric\"]}",
-			"rdt:type": "Data",
-			"rdt:scope": "R_GlobalEnv",
+			"rdt:name": "warning.msg",
+			"rdt:value": "In  eval(annot, environ, NULL) :  Warning 1",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Exception",
+			"rdt:scope": "ddg.library",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
 			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
 		"rdt:d2": {
-			"rdt:name": "Console.R",
-			"rdt:value": "data/2-Console.R",
+			"rdt:name": "warning.msg",
+			"rdt:value": "In  eval(annot, environ, NULL) :  Multi-line warning",
 			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
-			"rdt:type": "File",
-			"rdt:scope": "undefined",
-			"rdt:fromEnv": false,
-			"rdt:hash": "3bd3b7810625fb421d2ecbaa4d569520",
-			"rdt:timestamp": "2019-08-12T16.53.18EDT",
-			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R"
-		},
-		"rdt:d3": {
-			"rdt:name": "input",
-			"rdt:value": "data/3-input.txt",
-			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[4], \"type\":[\"character\"]}",
-			"rdt:type": "Snapshot",
-			"rdt:scope": "R_GlobalEnv",
+			"rdt:type": "Exception",
+			"rdt:scope": "ddg.library",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-07-17T14.33.57EDT",
+			"rdt:timestamp": "",
+			"rdt:location": ""
+		},
+		"rdt:d3": {
+			"rdt:name": "error.msg",
+			"rdt:value": "Error in eval(annot, environ, NULL): object 'foo' not found\n",
+			"rdt:valType": "{\"container\":\"vector\", \"dimension\":[1], \"type\":[\"character\"]}",
+			"rdt:type": "Exception",
+			"rdt:scope": "ddg.library",
+			"rdt:fromEnv": false,
+			"rdt:hash": "",
+			"rdt:timestamp": "",
 			"rdt:location": ""
 		},
 
@@ -124,16 +124,16 @@
 			"rdt:operatingSystem": "macOS Catalina 10.15.5",
 			"rdt:language": "R",
 			"rdt:langVersion": "R version 4.0.0 (2020-04-24)",
-			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/console.R",
+			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/warnings.r",
 			"rdt:scriptTimeStamp": "2019-08-12T16.53.18EDT",
-			"rdt:scriptHash": "3bd3b7810625fb421d2ecbaa4d569520",
-			"rdt:totalElapsedTime": "1.235",
+			"rdt:scriptHash": "3c87e73e0d9a01fa6b330e2b11ad0da1",
+			"rdt:totalElapsedTime": "1.236",
 			"rdt:sourcedScripts": "",
 			"rdt:sourcedScriptTimeStamps": "",
 			"rdt:sourcedScriptHashes": "",
 			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
-			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_console",
-			"rdt:provTimestamp": "2020-07-17T14.33.56EDT",
+			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_warnings",
+			"rdt:provTimestamp": "2020-07-17T14.34.19EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
@@ -229,18 +229,11 @@
 		},
 		"rdt:pd2": {
 			"prov:activity": "rdt:p3",
-			"prov:entity": "rdt:d3"
-		}
-	},
-
-	"used" : {
-		"rdt:dp1": {
-			"prov:entity": "rdt:d2",
-			"prov:activity": "rdt:p3"
+			"prov:entity": "rdt:d2"
 		},
-		"rdt:dp2": {
-			"prov:entity": "rdt:d3",
-			"prov:activity": "rdt:p4"
+		"rdt:pd3": {
+			"prov:activity": "rdt:p4",
+			"prov:entity": "rdt:d3"
 		}
 	}
 }

@@ -7,7 +7,7 @@
 	"agent" : {
 		"rdt:a1": {
 			"rdt:tool.name": "rdtLite",
-			"rdt:tool.version": "1.2.1",
+			"rdt:tool.version": "1.3",
 			"rdt:json.version": "2.3",
 			"rdt:args.names": [
 				"overwrite",
@@ -34,8 +34,8 @@
 		"rdt:p1": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Start",
-			"rdt:elapsedTime": "0.92",
-			"rdt:scriptNum": "NA",
+			"rdt:elapsedTime": "0.904",
+			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
 			"rdt:endLine": "NA",
@@ -44,7 +44,7 @@
 		"rdt:p2": {
 			"rdt:name": "library(utils)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.11",
+			"rdt:elapsedTime": "0.136",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 1,
 			"rdt:startCol": 1,
@@ -54,7 +54,7 @@
 		"rdt:p3": {
 			"rdt:name": "input <- readLines (\"in.txt\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.11",
+			"rdt:elapsedTime": "0.109",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 3,
 			"rdt:startCol": 1,
@@ -64,7 +64,7 @@
 		"rdt:p4": {
 			"rdt:name": "print (\"foo\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.13",
+			"rdt:elapsedTime": "0.088",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 4,
 			"rdt:startCol": 1,
@@ -74,7 +74,7 @@
 		"rdt:p5": {
 			"rdt:name": "print (input)",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.09",
+			"rdt:elapsedTime": "0.071",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 5,
 			"rdt:startCol": 1,
@@ -84,7 +84,7 @@
 		"rdt:p6": {
 			"rdt:name": "source (\"script2.r\")",
 			"rdt:type": "Operation",
-			"rdt:elapsedTime": "0.12",
+			"rdt:elapsedTime": "0.133",
 			"rdt:scriptNum": 1,
 			"rdt:startLine": 7,
 			"rdt:startCol": 1,
@@ -94,8 +94,8 @@
 		"rdt:p7": {
 			"rdt:name": "prov.R",
 			"rdt:type": "Finish",
-			"rdt:elapsedTime": "0.02",
-			"rdt:scriptNum": "NA",
+			"rdt:elapsedTime": "0.005",
+			"rdt:scriptNum": 1,
 			"rdt:startLine": "NA",
 			"rdt:startCol": "NA",
 			"rdt:endLine": "NA",
@@ -111,9 +111,9 @@
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "07effd7992ea26fbd9bd23deffb1d9d7",
-			"rdt:timestamp": "2020-01-16T12.34.16EST",
-			"rdt:location": "C:/GitHub/provSummarizeR/inst/testscripts/in.txt"
+			"rdt:hash": "732d814761d044c919425662375691de",
+			"rdt:timestamp": "2019-08-12T16.53.18EDT",
+			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/in.txt"
 		},
 		"rdt:d2": {
 			"rdt:name": "input",
@@ -123,7 +123,7 @@
 			"rdt:scope": "R_GlobalEnv",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-01-16T12.34.16EST",
+			"rdt:timestamp": "2020-07-17T14.34.11EDT",
 			"rdt:location": ""
 		},
 		"rdt:d3": {
@@ -145,7 +145,7 @@
 			"rdt:scope": "Standard output",
 			"rdt:fromEnv": false,
 			"rdt:hash": "",
-			"rdt:timestamp": "2020-01-16T12.34.17EST",
+			"rdt:timestamp": "2020-07-17T14.34.11EDT",
 			"rdt:location": ""
 		},
 		"rdt:d5": {
@@ -155,31 +155,33 @@
 			"rdt:type": "File",
 			"rdt:scope": "undefined",
 			"rdt:fromEnv": false,
-			"rdt:hash": "07effd7992ea26fbd9bd23deffb1d9d7",
-			"rdt:timestamp": "2020-01-16T12.34.17EST",
-			"rdt:location": "C:/GitHub/provSummarizeR/inst/testscripts/out.txt"
+			"rdt:hash": "732d814761d044c919425662375691de",
+			"rdt:timestamp": "2020-07-17T14.34.12EDT",
+			"rdt:location": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/out.txt"
 		},
 
 		"rdt:environment": {
 			"rdt:name": "environment",
-			"rdt:architecture": "x86_64",
-			"rdt:operatingSystem": "mingw32",
+			"rdt:architecture": "x86_64-apple-darwin17.0 (64-bit)",
+			"rdt:operatingSystem": "macOS Catalina 10.15.5",
 			"rdt:language": "R",
-			"rdt:langVersion": "R version 3.6.1 (2019-07-05)",
-			"rdt:script": "C:/GitHub/provSummarizeR/inst/testscripts/prov.R",
-			"rdt:scriptTimeStamp": "2019-12-05T11.55.19EST",
-			"rdt:totalElapsedTime": "1.5",
-			"rdt:sourcedScripts": "C:/GitHub/provSummarizeR/inst/testscripts/script2.r",
-			"rdt:sourcedScriptTimeStamps": "2019-12-05T11.55.19EST",
-			"rdt:workingDirectory": "C:/github/provSummarizeR/inst/testscripts",
-			"rdt:provDirectory": "C:/github/provSummarizeR/inst/testscripts/prov_prov",
-			"rdt:provTimestamp": "2020-01-16T12.34.15EST",
+			"rdt:langVersion": "R version 4.0.0 (2020-04-24)",
+			"rdt:script": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov.R",
+			"rdt:scriptTimeStamp": "2019-12-06T14.11.01EST",
+			"rdt:scriptHash": "a102198bc1aff4be5a493ec494659500",
+			"rdt:totalElapsedTime": "1.446",
+			"rdt:sourcedScripts": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/script2.r",
+			"rdt:sourcedScriptTimeStamps": "2019-08-12T16.53.18EDT",
+			"rdt:sourcedScriptHashes": "0b2c8d4e6ad7245d03b6c3361a710eee",
+			"rdt:workingDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts",
+			"rdt:provDirectory": "/Users/blerner/Documents/Process/DataProvenance/workspace/provSummarizeR/inst/testscripts/prov_prov",
+			"rdt:provTimestamp": "2020-07-17T14.34.10EDT",
 			"rdt:hashAlgorithm": "md5"
 		},
 
 		"rdt:l1": {
 			"name": "base",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -187,7 +189,7 @@
 		},
 		"rdt:l2": {
 			"name": "datasets",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -195,7 +197,7 @@
 		},
 		"rdt:l3": {
 			"name": "ggplot2",
-			"version": "3.2.1",
+			"version": "3.3.2",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -203,7 +205,7 @@
 		},
 		"rdt:l4": {
 			"name": "graphics",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -211,7 +213,7 @@
 		},
 		"rdt:l5": {
 			"name": "grDevices",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -219,7 +221,7 @@
 		},
 		"rdt:l6": {
 			"name": "methods",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -227,7 +229,7 @@
 		},
 		"rdt:l7": {
 			"name": "stats",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
@@ -235,7 +237,7 @@
 		},
 		"rdt:l8": {
 			"name": "utils",
-			"version": "3.6.1",
+			"version": "4.0.0",
 			"prov:type": {
 				"$": "prov:Collection",
 				"type": "xsd:QName"
